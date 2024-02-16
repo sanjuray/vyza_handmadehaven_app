@@ -22,7 +22,19 @@
           android:layout_marginBottom="@dimen/_5sdp"
 
           android:layout_above="@id/bottom_nav"
+<<<<<<< HEAD
           android:id="@+id/frame"/>
+=======
+          android:id="@+id/frame">
+
+          <com.google.android.material.floatingactionbutton.FloatingActionButton
+              android:layout_width="55dp"
+              android:layout_height="55dp"
+              android:src="@drawable/logo"
+              android:id="@+id/fab"/>
+
+      </FrameLayout>
+>>>>>>> c5a9c4168f40145528d0b8d166cdc55d768efe4e
 
 
 

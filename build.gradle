@@ -1,6 +1,11 @@
 // Top-level build file where you can add configuration options common to all sub-projects/modules.
 plugins {
+<<<<<<< HEAD
     id 'com.android.application' version '7.4.2' apply false
     id 'com.android.library' version '7.4.2' apply false
+=======
+    id 'com.android.application' version '8.2.0' apply false
+    id 'com.android.library' version '8.2.0' apply false
+>>>>>>> c5a9c4168f40145528d0b8d166cdc55d768efe4e
 
 }

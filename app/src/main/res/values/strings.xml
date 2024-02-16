@@ -10,4 +10,17 @@
 
     </string>
     <string name="spinner_description">Select state</string>
+<<<<<<< HEAD
+=======
+    <string name="sign_up">Sign up</string>
+    <string name="log_in">Login</string>
+    <string name="doesn_t_have_an_account">Doesn\'t have an Account?</string>
+    <string name="already_have_an_account">Already have an Account?</string>
+    <string name="or_sign_up_with_social_account">Or sign up with Social account</string>
+    <string name="btn_login">Login</string>
+    <string name="SignUp_about_me">About me</string>
+    <string name="SignUp_city">City</string>
+    <string name="SignUp_pindcode">Pincode</string>
+    <string name="SignUp_add_image">Add Image</string>
+>>>>>>> c5a9c4168f40145528d0b8d166cdc55d768efe4e
 </resources>
