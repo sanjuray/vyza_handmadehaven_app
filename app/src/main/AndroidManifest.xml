@@ -14,12 +14,14 @@
         android:theme="@style/Theme.Handicrafts"
         tools:targetApi="31">
         <activity
+
             android:name=".login.LoginPage"
             android:exported="false" />
         <activity
             android:name=".login.SignupPage"
             android:exported="false" />
         <activity
+
             android:name=".Home"
             android:exported="false" />
         <activity
