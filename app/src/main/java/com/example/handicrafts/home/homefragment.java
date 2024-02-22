@@ -1,18 +1,26 @@
 package com.example.handicrafts.home;
 
-import androidx.annotation.NonNull;
-import androidx.annotation.Nullable;
-import androidx.fragment.app.Fragment;
-import androidx.viewpager2.widget.ViewPager2;
-
+import android.content.Intent;
+import android.graphics.Color;
 import android.os.Bundle;
+import android.os.Handler;
+import android.os.Looper;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.EditText;
 import android.widget.GridView;
-import android.widget.SearchView;
 import android.widget.Toast;
+
+import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
+import androidx.appcompat.widget.SearchView;
+import androidx.fragment.app.Fragment;
+import androidx.recyclerview.widget.GridLayoutManager;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
+import androidx.viewpager2.widget.ViewPager2;
 
 import com.android.volley.Request;
 import com.android.volley.RequestQueue;
@@ -22,40 +30,188 @@ import com.android.volley.toolbox.JsonArrayRequest;
 import com.android.volley.toolbox.Volley;
 import com.example.handicrafts.R;
 
+
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
 import java.util.ArrayList;
+import java.util.Timer;
+import java.util.TimerTask;
 
 public class homefragment extends Fragment {
     SearchView searchView;
     ViewPager2 viewPager2;
     //use viewpager with a timer
-    GridView gridView1;
     GridView gridview2;
-    home_adapter adapter;
+    RecyclerView banner;
+    RecyclerView recyclerView,customer;
+    RecyclerView recyclerView2;
+    customer_adapter customer_adapter;
+    recycler_adapter adapter2;
+    //String url=https://handmadehavens.com/review.php
+
+
+     ArrayList<home_data> filteredData;
     ArrayList<home_data> data;
+    ArrayList<data> datalist;
+    int[] images = {R.drawable.logo,R.drawable.hand1,R.drawable.hand2, R.drawable.hand3,R.drawable.hand2};
+     int currentPage = 0;
 
 
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.new_home, null);
-        //searchView = view.findViewById(R.id.search);
-        gridView1 = view.findViewById(R.id.grid_love);
-        gridview2 = view.findViewById(R.id.grid2);
-        //searchView.setQueryHint("Search Handicrafts Here :)");
+        searchView = view.findViewById(R.id.search);
+        //this line is important
+        datalist=new ArrayList<>();
+        customer=view.findViewById(R.id.reviews);
+        customer_adapter=new customer_adapter(getContext(),datalist);
+        customer.setAdapter(customer_adapter);
+        customer.setLayoutManager(new LinearLayoutManager(getContext(),LinearLayoutManager.VERTICAL,false));
+        review();
+
+
+
+        banner=view.findViewById(R.id.banner);
+        recycler_banner banner2=new recycler_banner(getContext(),images);
+        banner.setAdapter(banner2);
+        banner.setLayoutManager(new LinearLayoutManager(getContext(), LinearLayoutManager.HORIZONTAL, false));
+
+
+  Handler handler=new Handler(Looper.getMainLooper());
+
+       Timer timer=new Timer();
+        TimerTask timerTask = new TimerTask() {
+            @Override
+            public void run() {
+                handler.post(new Runnable() {
+                    @Override
+                    public void run() {
+                        if (currentPage == images.length) {
+                            currentPage = 0;
+                        }
+                        banner.smoothScrollToPosition(currentPage++);
+                    }
+                });
+            }
+        };
+
+
+        timer.schedule(timerTask, 1000, 3000);
+
+
+
+
+
+        recyclerView2=view.findViewById(R.id.grid2);
+        recyclerView=view.findViewById(R.id.grid_love);
+        searchView.setQueryHint("Search Handicrafts Here :)");
+        searchView.getSolidColor();
+        searchView.clearFocus();
+        EditText txtSearch = ((EditText)searchView.findViewById(androidx.appcompat.R.id.search_src_text));
+
+        txtSearch.setHintTextColor(getResources().getColor(R.color.black));
+        txtSearch.setTextColor(Color.BLACK);
+
 
         data = new ArrayList<>();
-        adapter = new home_adapter(getContext(), data);
-        gridView1.setAdapter(adapter);
-        gridview2.setAdapter(adapter);
+        adapter2=new recycler_adapter(getContext(),data);
+        GridLayoutManager layoutManager = new GridLayoutManager(getContext(), 2);
+        recyclerView.setLayoutManager(layoutManager);
+        recyclerView.setAdapter(adapter2);
+        GridLayoutManager layoutManager2 = new GridLayoutManager(getContext(), 2);
+        recyclerView2.setLayoutManager(layoutManager2);
+        recyclerView2.setAdapter(adapter2);
+
+        //adapter = new home_adapter(getContext(), data);
+
+        //gridview2.setAdapter(adapter);
+
         fetchdata();
+
+        filteredData = new ArrayList<>(data);
+
+        searchView.setOnQueryTextListener(new SearchView.OnQueryTextListener() {
+            @Override
+            public boolean onQueryTextSubmit(String query) {
+                return false;
+            }
+
+            @Override
+            public boolean onQueryTextChange(String newText) {
+               // banner.setVisibility(View.INVISIBLE);
+                filter(newText);
+                return true;
+            }
+        });
+
+
+
+
         return view;
 
 
     }
+
+    private void review() {
+        RequestQueue requestQueue = Volley.newRequestQueue(getActivity());
+        String urls = "https://handmadehavens.com/review.php";
+        JsonArrayRequest arrayRequest=new JsonArrayRequest(Request.Method.GET, urls, null, new Response.Listener<JSONArray>() {
+            @Override
+            public void onResponse(JSONArray response) {
+                reviews(response);
+            }
+        }, new Response.ErrorListener() {
+            @Override
+            public void onErrorResponse(VolleyError error) {
+                // here we will send that pls check you internet connection
+            }
+        }
+        );
+        requestQueue.add(arrayRequest);
+
+
+    }
+
+    private void reviews(JSONArray response) {
+        try{
+            datalist.clear();
+            for(int i=0;i<response.length();i++){
+                JSONObject object=response.getJSONObject(i);
+                data data1=new data(
+                        object.getString("user_name"),
+                         object.getString("user_review"),
+                        object.getInt("user_rating"),
+                        object.getInt("review_id")
+                );
+
+                data1.setUser_review(object.getString("user_review"));
+                data1.setUser_name(object.getString("user_name"));
+                data1.setUser_rating(object.getInt("user_rating"));
+                datalist.add(data1);
+            }
+            customer_adapter.notifyDataSetChanged();
+        } catch (JSONException e) {
+            throw new RuntimeException(e);
+        }
+
+        //
+
+    }
+
+    private void filter(String newText) {
+
+        ArrayList<home_data> filteredlist=new ArrayList<>();
+        for (home_data item:data){
+            if (item.getName().toLowerCase().contains(newText.toLowerCase())){
+                filteredlist.add(item);
+            }
+        }
+        adapter2.filterlist(filteredlist);
+    }
+
 
     private void fetchdata() {
 
@@ -123,7 +279,8 @@ public class homefragment extends Fragment {
 
                 data.add(home_data);
             }
-            adapter.notifyDataSetChanged();
+            //adapter.notifyDataSetChanged();
+            adapter2.notifyDataSetChanged();
         } catch (JSONException e) {
             e.printStackTrace();
         }

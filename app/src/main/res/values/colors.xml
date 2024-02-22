@@ -6,10 +6,9 @@
     <color name="teal_200">#FF03DAC5</color>
     <color name="teal_700">#FF018786</color>
     <color name="black">#FF000000</color>
-<<<<<<< HEAD
-=======
+
+
     <color name="orange_btnColor">#eb8621</color>
->>>>>>> c5a9c4168f40145528d0b8d166cdc55d768efe4e
     <color name="white">#FFFFFFFF</color>
     <color name="light">#D3D3D3</color>
     <color name="grey">#ECECEC</color>

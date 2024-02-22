@@ -7,21 +7,10 @@
     android:layout_height="match_parent">
 
 
-    <androidx.appcompat.widget.SearchView
-        android:id="@+id/search"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="@dimen/_6sdp"
-        android:layout_marginTop="@dimen/_6sdp"
-        android:layout_marginEnd="@dimen/_6sdp"
-        android:layout_marginBottom="@dimen/_6sdp"
-        android:background="@drawable/style6"
 
-        app:queryHint="Search Handicrafts here"
-        app:searchHintIcon="@color/grey3" />
 
     <ScrollView
-        android:layout_width="wrap_content"
+        android:layout_width="match_parent"
         android:id="@+id/scroll"
         android:layout_height="wrap_content">
 
@@ -35,16 +24,35 @@
             android:layout_height="match_parent"
 
             android:orientation="vertical">
-            <androidx.viewpager2.widget.ViewPager2
-                android:layout_width="match_parent"
-                android:background="@drawable/style_5"
-                android:layout_height="@dimen/_130sdp"
-                android:layout_marginLeft="@dimen/_10sdp"
-                android:layout_marginRight="@dimen/_10sdp"
-                android:layout_marginTop="@dimen/_55sdp"
+            <androidx.appcompat.widget.SearchView
+                android:id="@+id/search"
 
+                android:layout_width="match_parent"
+                android:textColor="@color/black"
+                app:iconifiedByDefault="false"
+
+                app:searchIcon="@drawable/baseline_search_24"
+                app:defaultQueryHint="Search here"
+
+
+
+
+                android:layout_height="wrap_content"
+                android:layout_margin="@dimen/_7sdp"
+                android:background="@drawable/style7"
+
+                app:queryHint="Search Handicrafts here"
+                />
+
+            <androidx.recyclerview.widget.RecyclerView
+                android:layout_width="match_parent"
+
+                android:background="@drawable/style6"
+                android:layout_height="@dimen/_140sdp"
+              android:layout_margin="@dimen/_10sdp"
 
                 android:id="@+id/banner"/>
+
 
 
             <TextView
@@ -53,25 +61,22 @@
                 android:textSize="@dimen/_20sdp"
 
                 android:fontFamily="sans-serif"
-                 android:text="Traditional items"
+                android:text="Traditional items"
                 android:layout_marginLeft="@dimen/_3sdp"
                 android:textColor="@color/black2"
                 android:layout_marginTop="@dimen/_9sdp"/>
 
-
-            <GridView
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
+            <androidx.recyclerview.widget.RecyclerView
                 android:id="@+id/grid_love"
-                android:numColumns="2"
-
-                android:layout_margin="@dimen/_7sdp"
-
-                android:verticalSpacing="@dimen/_1sdp"
-                android:horizontalSpacing="@dimen/_1sdp"/>
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
 
 
+                android:padding="@dimen/_6sdp"
+                android:orientation="horizontal"
+                android:layout_margin="@dimen/_2sdp"
 
+                tools:listitem="@layout/grid_item2" />
 
 
             <TextView
@@ -80,24 +85,22 @@
                 android:textSize="@dimen/_20sdp"
                 android:fontFamily="sans-serif"
                 android:text="Trending Items"
+
                 android:layout_marginLeft="@dimen/_3sdp"
                 android:textColor="@color/black2"
                 android:layout_marginTop="@dimen/_7sdp"/>
-            <GridView
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/grid2"
                 android:layout_width="match_parent"
+                android:layout_height="wrap_content"
 
 
-                android:layout_height="match_parent"
-                android:numColumns="2"
-                android:verticalSpacing="@dimen/_1sdp"
-                android:horizontalSpacing="@dimen/_3sdp"
-
+                android:padding="@dimen/_6sdp"
                 android:orientation="horizontal"
-                android:background="@color/bright"
+                android:layout_margin="@dimen/_2sdp"
 
+                tools:listitem="@layout/grid_item2" />
 
-                android:layout_margin="@dimen/_3sdp"
-                android:id="@+id/grid2"/>
 
 
             <TextView
