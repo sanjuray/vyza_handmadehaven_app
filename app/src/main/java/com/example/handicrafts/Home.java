@@ -54,7 +54,7 @@ public class Home extends AppCompatActivity {
 
         if (savedInstanceState == null) {
             getSupportFragmentManager().beginTransaction()
-                    .replace(R.id.frame, new HomeFragment())
+                    .replace(R.id.frame, new homefragment())
                     .commit();
         }
         navigationView=findViewById(R.id.bottom_nav);

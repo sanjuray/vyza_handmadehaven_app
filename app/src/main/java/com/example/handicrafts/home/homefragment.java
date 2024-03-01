@@ -1,7 +1,11 @@
 package com.example.handicrafts.home;
 
+import android.app.AlertDialog;
+import android.content.Context;
 import android.content.Intent;
 import android.graphics.Color;
+import android.net.ConnectivityManager;
+import android.net.NetworkInfo;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.Looper;
@@ -11,6 +15,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.EditText;
 import android.widget.GridView;
+import android.widget.RelativeLayout;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
@@ -22,6 +27,7 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 import androidx.viewpager2.widget.ViewPager2;
 
+import com.airbnb.lottie.LottieAnimationView;
 import com.android.volley.Request;
 import com.android.volley.RequestQueue;
 import com.android.volley.Response;
@@ -29,6 +35,7 @@ import com.android.volley.VolleyError;
 import com.android.volley.toolbox.JsonArrayRequest;
 import com.android.volley.toolbox.Volley;
 import com.example.handicrafts.R;
+import com.facebook.shimmer.ShimmerFrameLayout;
 
 
 import org.json.JSONArray;
@@ -40,6 +47,7 @@ import java.util.Timer;
 import java.util.TimerTask;
 
 public class homefragment extends Fragment {
+    RelativeLayout relativeLayout;
     SearchView searchView;
     ViewPager2 viewPager2;
     //use viewpager with a timer
@@ -55,15 +63,23 @@ public class homefragment extends Fragment {
      ArrayList<home_data> filteredData;
     ArrayList<home_data> data;
     ArrayList<data> datalist;
-    int[] images = {R.drawable.logo,R.drawable.hand1,R.drawable.hand2, R.drawable.hand3,R.drawable.hand2};
+    int[] images = {R.drawable.hand1,R.drawable.hand2, R.drawable.hand3,R.drawable.hand2};
      int currentPage = 0;
+     ShimmerFrameLayout frameLayout;
+     LottieAnimationView animationView;
 
 
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.new_home, null);
+        if (!isConnected(getContext())) {
+            showNoInternetDialog();
+        }
+        animationView=view.findViewById(R.id.no_internet);
+        relativeLayout=view.findViewById(R.id.relative9);
         searchView = view.findViewById(R.id.search);
+        frameLayout=view.findViewById(R.id.shimms);
         //this line is important
         datalist=new ArrayList<>();
         customer=view.findViewById(R.id.reviews);
@@ -155,6 +171,32 @@ public class homefragment extends Fragment {
 
     }
 
+    private void showNoInternetDialog() {
+        AlertDialog.Builder builder = new AlertDialog.Builder(getContext());
+
+
+        LayoutInflater inflater = getLayoutInflater();
+        View dialogView = inflater.inflate(R.layout.no_internet, null);
+        animationView=dialogView.findViewById(R.id.no_internet);
+        animationView.setAnimation(R.raw.internet);
+        animationView.playAnimation();
+        builder.setView(dialogView);
+        AlertDialog dialog = builder.create();
+
+
+        dialog.show();
+    }
+
+    private boolean isConnected(Context context) {
+        ConnectivityManager connectivityManager = (ConnectivityManager) context.getSystemService(Context.CONNECTIVITY_SERVICE);
+        if (connectivityManager != null) {
+            NetworkInfo activeNetwork = connectivityManager.getActiveNetworkInfo();
+            return activeNetwork != null && activeNetwork.isConnectedOrConnecting();
+        }
+        return false;
+    }
+
+
     private void review() {
         RequestQueue requestQueue = Volley.newRequestQueue(getActivity());
         String urls = "https://handmadehavens.com/review.php";
@@ -214,6 +256,7 @@ public class homefragment extends Fragment {
 
 
     private void fetchdata() {
+        frameLayout.startShimmerAnimation();
 
 
         RequestQueue requestQueue = Volley.newRequestQueue(getActivity());
@@ -278,6 +321,11 @@ public class homefragment extends Fragment {
 
 
                 data.add(home_data);
+                frameLayout.postDelayed(() -> {
+                    frameLayout.stopShimmerAnimation();
+                    frameLayout.setVisibility(View.GONE);
+                    recyclerView2.setVisibility(View.VISIBLE);
+                }, 3000);
             }
             //adapter.notifyDataSetChanged();
             adapter2.notifyDataSetChanged();
