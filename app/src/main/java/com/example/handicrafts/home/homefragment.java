@@ -141,9 +141,7 @@ public class homefragment extends Fragment {
         recyclerView2.setLayoutManager(layoutManager2);
         recyclerView2.setAdapter(adapter2);
 
-        //adapter = new home_adapter(getContext(), data);
 
-        //gridview2.setAdapter(adapter);
 
         fetchdata();
 
@@ -259,7 +257,7 @@ public class homefragment extends Fragment {
         frameLayout.startShimmerAnimation();
 
 
-        RequestQueue requestQueue = Volley.newRequestQueue(getActivity());
+        RequestQueue requestQueue = Volley.newRequestQueue(getContext());
         String url = "https://handmadehavens.com/database.php"; // Replace with your actual PHP API URL
 
         JsonArrayRequest jsonArrayRequest = new JsonArrayRequest(

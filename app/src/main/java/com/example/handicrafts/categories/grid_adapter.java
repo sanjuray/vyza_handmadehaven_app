@@ -1,56 +1,67 @@
 package com.example.handicrafts.categories;
 
-import static android.view.LayoutInflater.*;
-
 import android.content.Context;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.BaseAdapter;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import androidx.annotation.NonNull;
+import androidx.recyclerview.widget.RecyclerView;
+
+import com.bumptech.glide.Glide;
 import com.example.handicrafts.R;
-import com.facebook.shimmer.ShimmerFrameLayout;
 
 import java.util.ArrayList;
 
-import de.hdodenhof.circleimageview.CircleImageView;
+public class grid_adapter extends RecyclerView.Adapter<grid_adapter.view> {
 
-public class grid_adapter extends BaseAdapter {
-
-    ArrayList<data>data;
+    ArrayList<test_data> models;
     Context context;
 
-    public grid_adapter(ArrayList<com.example.handicrafts.categories.data> data, Context context) {
-        this.data = data;
+    public grid_adapter(ArrayList<test_data> models, Context context) {
+        this.models = models;
         this.context = context;
     }
 
+    @NonNull
     @Override
-    public int getCount() {
-        return data.size();
+    public view onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
+        View view= LayoutInflater.from(parent.getContext()).inflate(R.layout.fav_newitems,parent,false);
+        return new view(view);
+
     }
 
     @Override
-    public Object getItem(int i) {
-        return null;
+    public void onBindViewHolder(@NonNull view holder, int position) {
+        test_data m=models.get(position);
+        holder.txt.setText(m.getName());
+        holder.price.setText(m.getPrice());
+        holder.discount.setText(m.getDicount());
+        Glide.with(context).load(m.getImage()).into(holder.img);
+
+
+
     }
 
     @Override
-    public long getItemId(int i) {
-        return 0;
+    public int getItemCount() {
+        return models.size();
     }
 
-    @Override
-    public View getView(int i, View view, ViewGroup viewGroup) {
-        if(view==null){
-            LayoutInflater inflater = (LayoutInflater)context.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
-            view = inflater.inflate(R.layout.cat_item, null);
+    public static class view extends RecyclerView.ViewHolder{
+        ImageView  img;
+        TextView txt, price,discount;
+
+
+        public view(@NonNull View itemView) {
+            super(itemView);
+            img=itemView.findViewById(R.id.img);
+            txt=itemView.findViewById(R.id.view);
+            price=itemView.findViewById(R.id.price);
+            discount=itemView.findViewById(R.id.discount);
+
         }
-        TextView textView=view.findViewById(R.id.cat_text);
-        ImageView imageView=view.findViewById(R.id.circular);
-        return view;
-
     }
 }
