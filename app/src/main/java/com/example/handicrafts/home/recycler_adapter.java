@@ -23,7 +23,7 @@ import com.bumptech.glide.Glide;
 import com.example.handicrafts.R;
 import com.example.handicrafts.detail.detail_view;
 import com.example.handicrafts.fav.fav_activity;
-import com.example.handicrafts.fav.test_activity;
+//import com.example.handicrafts.fav.test_activity;
 
 import java.util.ArrayList;
 
