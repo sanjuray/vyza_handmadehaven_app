@@ -72,7 +72,7 @@
                 android:id="@+id/detail_images"
                 android:layout_width="match_parent"
                 android:layout_height="@dimen/_160sdp"
-                android:scaleType="fitCenter"
+                android:scaleType="fitXY"
                 android:src="@drawable/punjab" />
 
             <com.airbnb.lottie.LottieAnimationView
@@ -100,7 +100,7 @@
                 android:layout_height="wrap_content"
                 android:text="10"
                 android:textColor="@color/new_grey"
-                android:id="@+id/detail_discount"
+
                 android:textSize="@dimen/_12sdp"
                 android:layout_gravity="end|bottom"
                 android:layout_marginRight="@dimen/_55sdp"
@@ -109,6 +109,8 @@
 
 
         </FrameLayout>
+
+
 
         <LinearLayout
             android:layout_width="match_parent"
