@@ -2,8 +2,11 @@ package com.example.handicrafts.home;
 
 
 
+import static androidx.core.content.ContentProviderCompat.requireContext;
+
 import android.content.Context;
 import android.content.Intent;
+import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -12,12 +15,15 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
+import androidx.fragment.app.FragmentManager;
+import androidx.fragment.app.FragmentTransaction;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.bumptech.glide.Glide;
 import com.example.handicrafts.R;
 import com.example.handicrafts.detail.detail_view;
 import com.example.handicrafts.fav.fav_activity;
+import com.example.handicrafts.fav.test_activity;
 
 import java.util.ArrayList;
 
@@ -55,32 +61,6 @@ public class recycler_adapter extends RecyclerView.Adapter<recycler_adapter.view
                 .error(R.drawable.account)// Pass the image URL or resource ID here
                 .into(holder.imageView);
         //grid view and list view have same adapter
-
-
-        holder.view.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                view.setBackgroundResource(R.drawable.baseline_favorite_24);
-                Toast.makeText(context, "item added to favorite", Toast.LENGTH_SHORT).show();
-                //fav_activity fragment = new fav_activity();
-
-                // Pass the product ID as arguments to the fragment
-                //Bundle args = new Bundle();
-                //args.putString("product_id", data.getProduct_id());
-                // fragment.setArguments(args);
-
-                // Replace the current fragment with the fav_activity fragment
-
-
-                Intent intent=new Intent(context, fav_activity.class);
-
-                intent.putExtra("product_id",data.getProduct_id());
-                intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
-                context.startActivity(intent);
-
-            }
-        });
-
         holder.itemView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
