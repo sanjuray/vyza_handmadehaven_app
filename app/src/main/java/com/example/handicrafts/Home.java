@@ -15,7 +15,7 @@ import android.view.View;
 
 import com.example.handicrafts.categories.catFragment;
 import com.example.handicrafts.fav.favFragment;
-//import com.example.handicrafts.fav.test_activity;
+import com.example.handicrafts.fav.test_activity;
 import com.example.handicrafts.home.homefragment;
 
 
@@ -29,7 +29,7 @@ import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.google.android.material.navigation.NavigationBarView;
 
 public class Home extends AppCompatActivity {
-//Ujjwal Tiwari---------
+
     BottomNavigationView navigationView;
 
     FloatingActionButton floatingActionButton;
