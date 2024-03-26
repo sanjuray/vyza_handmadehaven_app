@@ -2,27 +2,20 @@ package com.example.handicrafts.home;
 
 
 
-import static androidx.core.content.ContentProviderCompat.requireContext;
-
 import android.content.Context;
 import android.content.Intent;
-import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import androidx.annotation.NonNull;
-import androidx.fragment.app.FragmentManager;
-import androidx.fragment.app.FragmentTransaction;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.bumptech.glide.Glide;
 import com.example.handicrafts.R;
 import com.example.handicrafts.detail.detail_view;
-import com.example.handicrafts.fav.fav_activity;
 //import com.example.handicrafts.fav.test_activity;
 
 import java.util.ArrayList;
