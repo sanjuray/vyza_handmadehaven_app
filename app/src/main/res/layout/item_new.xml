@@ -76,8 +76,8 @@
                 android:src="@drawable/punjab" />
 
             <com.airbnb.lottie.LottieAnimationView
-                android:layout_width="@dimen/_30sdp"
-                android:layout_height="@dimen/_30sdp"
+                android:layout_width="@dimen/_10sdp"
+                android:layout_height="@dimen/_10sdp"
                 android:layout_marginTop="@dimen/_3sdp"
                 app:lottie_autoPlay="true"
                 app:lottie_repeatMode="reverse"
@@ -104,7 +104,7 @@
                 android:text="10"
                 android:textColor="@color/new_grey"
 
-                android:textSize="@dimen/_15sdp"
+                android:textSize="@dimen/_10sdp"
                 android:layout_gravity="end|bottom"
                  android:gravity="end"/>
             <TextView
@@ -113,7 +113,7 @@
                 android:layout_height="wrap_content"
                 android:text="%discount"
                 android:textColor="@color/new_grey"
-                android:textSize="@dimen/_15sdp"
+                android:textSize="@dimen/_10sdp"
                 android:layout_gravity="end|bottom"
                android:layout_marginRight="@dimen/_6sdp"
                 android:gravity="end"/>

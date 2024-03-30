@@ -6,13 +6,24 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.android.volley.Request;
+import com.android.volley.RequestQueue;
+import com.android.volley.Response;
+import com.android.volley.VolleyError;
+import com.android.volley.toolbox.JsonArrayRequest;
+import com.android.volley.toolbox.Volley;
 import com.bumptech.glide.Glide;
 import com.example.handicrafts.R;
+
+import org.json.JSONArray;
+import org.json.JSONException;
+import org.json.JSONObject;
 
 import java.util.ArrayList;
 
@@ -23,6 +34,7 @@ public class items_adapter extends RecyclerView.Adapter<items_adapter.viewholder
     grid_adapter adapter;
 
     ArrayList<state_data> dataArrayList;
+    ArrayList<data> newdata;
     Context context;
     boolean isclosed=false;
 
@@ -43,7 +55,6 @@ public class items_adapter extends RecyclerView.Adapter<items_adapter.viewholder
     public void onBindViewHolder(@NonNull viewholder holder, int position) {
         state_data data=dataArrayList.get(position);
         holder.textView.setText(data.getName());
-
         Glide.with(context).load(data.getDrop()).into(holder.imageView);
         Glide.with(context).load(data.getImage()).into(holder.imageViews);
 
@@ -54,18 +65,17 @@ public class items_adapter extends RecyclerView.Adapter<items_adapter.viewholder
                     holder.view.setVisibility(View.VISIBLE);
                     holder.imageView.setImageResource(R.drawable.baseline_arrow_drop_up_24);
                     isclosed = true;
-                    ArrayList<test_data> models = new ArrayList<>();
-                    models.add(new test_data(R.drawable.images, " Rs 700", "  Pen Stand and Holder", "10% discount"));
-                    models.add(new test_data(R.drawable.arunachal, " Rs 600", "Mandiram", "10% discount"));
-                    models.add(new test_data(R.drawable.arunachal2, "Rs 1000", "Kukuma Box", "20% discount"));
-                    models.add(new test_data(R.drawable.punjab, "Rs 800", "Kokin", "30% discount"));
-                    models.add(new test_data(R.drawable.images, "Rs 400", "Thungkal", "10% discount"));
-                    models.add(new test_data(R.drawable.arunachal2, "Rs 900", "Antique", "10% discount"));
-                    models.add(new test_data(R.drawable.punjab, " Rs700", "Gudda Gudii", "15% discount"));
+                    newdata=new ArrayList<>();
+                    if(holder.getAdapterPosition()==0){
+                        arunachal();
+                    }
+                    if(holder.getAdapterPosition()==1){
+                        assam();
+                    }
 
 
-                   // adapter = new items_adapter(models, view.getContext());
-                    adapter=new grid_adapter(models, view.getContext());
+
+                    adapter=new grid_adapter(newdata, view.getContext());
 
 
                     RecyclerView.LayoutManager layoutManager = new LinearLayoutManager(view.getContext(), LinearLayoutManager.HORIZONTAL, false);
@@ -82,9 +92,95 @@ public class items_adapter extends RecyclerView.Adapter<items_adapter.viewholder
 
 
             }
+
+
         });
 
     }
+
+    private void assam() {
+        RequestQueue requestQueue = Volley.newRequestQueue(context.getApplicationContext());
+        String url="https://handmadehavens.com/testing.php?state=Bihar";
+        JsonArrayRequest arrayRequest=new JsonArrayRequest(Request.Method.GET, url, null, new Response.Listener<JSONArray>() {
+            @Override
+            public void onResponse(JSONArray response) {
+                productdata(response);
+            }
+        }, new Response.ErrorListener() {
+            @Override
+            public void onErrorResponse(VolleyError error) {
+                Toast.makeText(context, "App is great and so are you ", Toast.LENGTH_SHORT).show();
+
+            }
+        }
+
+        );
+        requestQueue.add(arrayRequest);
+
+    }
+
+    private void arunachal() {
+        RequestQueue requestQueue = Volley.newRequestQueue(context.getApplicationContext());
+        String url="https://handmadehavens.com/testing.php?state=Andhra pradesh";
+        JsonArrayRequest arrayRequest=new JsonArrayRequest(Request.Method.GET, url, null, new Response.Listener<JSONArray>() {
+            @Override
+            public void onResponse(JSONArray response) {
+                productdata(response);
+            }
+        }, new Response.ErrorListener() {
+            @Override
+            public void onErrorResponse(VolleyError error) {
+                Toast.makeText(context, "App is great and so are you ", Toast.LENGTH_SHORT).show();
+
+            }
+        }
+
+        );
+        requestQueue.add(arrayRequest);
+    }
+
+    private void productdata(JSONArray response) {
+
+        try {
+            newdata.clear();
+            for(int i=0;i<response.length();i++){
+                JSONObject OBJECT= response.getJSONObject(i);
+
+                    data data=new data(
+                            OBJECT.getString("product_id"),
+                            OBJECT.getString("images"),
+                            OBJECT.getString("name"),
+                            OBJECT.getString("price"),
+                            OBJECT.getString("discount"),
+                            OBJECT.getString("description"),
+                            OBJECT.getString("content_review"),
+                            OBJECT.getString("state"),
+                            OBJECT.getString("city"),
+                            R.drawable.favourite,
+                            R.drawable.discount
+
+
+
+
+                    );
+                    data.setCity(OBJECT.getString("city"));
+                    data.setName(OBJECT.getString("name"));
+                    data.setImages(OBJECT.getString("images"));
+                    //data.setCity(OBJECT.getString("city"));
+                    data.setPrice(OBJECT.getString("price"));
+                    data.setDiscount(OBJECT.getString("discount"));
+                    data.setContent_review(OBJECT.getString("content_review"));
+
+                    newdata.add(data);
+                }
+                adapter.notifyDataSetChanged();
+            } catch (JSONException e) {
+            throw new RuntimeException(e);
+        }
+
+
+    }
+
 
 
 
