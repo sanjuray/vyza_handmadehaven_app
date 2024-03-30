@@ -37,9 +37,6 @@
             android:name=".detail.detail_view"
             android:exported="false" />
         <activity
-            android:name=".edit_profile"
-            android:exported="false" />
-        <activity
             android:name=".splash"
             android:exported="true">
             <intent-filter>
