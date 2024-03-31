@@ -19,6 +19,12 @@
 <!--            android:name=".test_activity"-->
 <!--            android:exported="false" />-->
         <activity
+            android:name=".profile.edit_profile"
+            android:exported="false" />
+        <activity
+            android:name=".profile.detail_activity"
+            android:exported="false" />
+        <activity
             android:name=".login.LoginPage"
             android:exported="false" />
         <activity
@@ -26,9 +32,6 @@
             android:exported="false" />
         <activity
             android:name=".Home"
-            android:exported="false" />
-        <activity
-            android:name=".detail_activity"
             android:exported="false" />
         <activity
             android:name=".view.view"

@@ -13,7 +13,6 @@ import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 
 import com.example.handicrafts.R;
-import com.example.handicrafts.detail_activity;
 import com.facebook.shimmer.ShimmerFrameLayout;
 
 import java.util.ArrayList;

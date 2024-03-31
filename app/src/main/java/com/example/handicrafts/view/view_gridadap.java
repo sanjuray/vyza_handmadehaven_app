@@ -10,12 +10,10 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import androidx.cardview.widget.CardView;
-import androidx.recyclerview.widget.RecyclerView;
 
 import com.bumptech.glide.Glide;
 import com.example.handicrafts.R;
 import com.example.handicrafts.detail.detail_view;
-import com.example.handicrafts.detail_activity;
 
 import java.util.ArrayList;
 
