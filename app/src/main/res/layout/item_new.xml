@@ -361,13 +361,27 @@
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_margin="@dimen/_8sdp"
+            android:orientation="vertical"
             android:layout_height="wrap_content">
-            <androidx.recyclerview.widget.RecyclerView
-                android:layout_width="match_parent"
-                android:visibility="gone"
-                android:background="@drawable/style_5"
-                android:layout_height="wrap_content"
-                android:id="@+id/recycler"/>
+
+            <com.airbnb.lottie.LottieAnimationView
+                android:layout_width="@dimen/_200sdp"
+                android:layout_height="@dimen/_100sdp"
+                app:lottie_autoPlay="true"
+                android:layout_gravity="center"
+                app:lottie_loop="true"
+                android:id="@+id/review_anim"/>
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="@dimen/_20sdp"
+                android:text="No Reviews Yet"
+                android:textColor="@color/black2"
+                android:gravity="center"
+                android:layout_gravity="center"
+                android:textSize="@dimen/_16sdp"/>
+
+
 
         </LinearLayout>
 

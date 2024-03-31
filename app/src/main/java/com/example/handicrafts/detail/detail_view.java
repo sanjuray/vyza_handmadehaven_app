@@ -55,13 +55,16 @@ public class detail_view extends AppCompatActivity implements PaymentResultListe
     ImageView backbutton;
     TextView description, state, city, title, price, discount,price2;
     LinearLayout buyNow;
-    LottieAnimationView animationView;
+    LottieAnimationView animationView,review_anims;
 
     float realAmount;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.item_new);
+        review_anims=findViewById(R.id.review_anim);
+        review_anims.setAnimation(R.raw.review);
+        review_anims.playAnimation();
         price2=findViewById(R.id.title2);
 
         backbutton = findViewById(R.id.backed);

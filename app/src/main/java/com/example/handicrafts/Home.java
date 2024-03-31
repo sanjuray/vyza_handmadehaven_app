@@ -31,7 +31,7 @@ public class Home extends AppCompatActivity {
         setContentView(R.layout.activity_home);
         if (savedInstanceState == null) {
             getSupportFragmentManager().beginTransaction()
-                    .replace(R.id.frame, new HomeFragment())
+                    .replace(R.id.frame, new homefragment())
                     .commit();
         }
 
