@@ -20,6 +20,7 @@
     <string name="SignUp_about_me">About me</string>
     <string name="SignUp_city">City</string>
     <string name="SignUp_pindcode">Pincode</string>
+    <string name="api">AIzaSyCX9OMG7iua9i8PCcGB9OlladtWs5heTZY</string>
     <string name="SignUp_add_image">Add Image</string>
 
 </resources>

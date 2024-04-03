@@ -5,6 +5,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@color/white"
 
     tools:context=".login.SignupPage">
 
@@ -131,38 +132,9 @@
 
             </Spinner>
 
-            <Spinner
-                android:id="@+id/edt_dropdown_language"
-                android:layout_width="343dp"
-                android:layout_height="60dp"
-                android:gravity="center"
-                android:layout_marginTop="6dp"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@id/edt_dropdown_gender"
-                android:background="@drawable/bg_signup_spinner">
 
-            </Spinner>
 
-            <com.google.android.material.textfield.TextInputLayout
-                android:id="@+id/txt_aboutMe"
-                style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
-                android:layout_width="343dp"
-                android:layout_height="94dp"
-                android:layout_marginTop="6dp"
-                android:hint="@string/SignUp_about_me"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/edt_dropdown_language">
 
-                <com.google.android.material.textfield.TextInputEditText
-                    android:id="@+id/edt_aboutMe"
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:gravity="top">
-
-                </com.google.android.material.textfield.TextInputEditText>
-            </com.google.android.material.textfield.TextInputLayout>
 
             <com.google.android.material.textfield.TextInputLayout
                 android:id="@+id/txt_pincode"
@@ -173,7 +145,7 @@
                 android:hint="@string/SignUp_pindcode"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/txt_aboutMe">
+                app:layout_constraintTop_toBottomOf="@+id/edt_dropdown_gender">
 
                 <com.google.android.material.textfield.TextInputEditText
                     android:id="@+id/edt_pincode"
@@ -211,6 +183,9 @@
                 android:layout_width="343dp"
                 android:layout_height="60dp"
                 android:layout_marginTop="6dp"
+
+
+
                 android:gravity="center"
                 android:dropDownHeight="25dp"
                 app:layout_constraintEnd_toEndOf="parent"
