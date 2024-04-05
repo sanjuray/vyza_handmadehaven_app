@@ -43,4 +43,5 @@ public class StateSpinnerAdapter extends BaseAdapter {
         genderText.setText(state.get(i).genderText);
         return rootView;
     }
+
 }

@@ -23,6 +23,7 @@ import com.android.volley.toolbox.JsonObjectRequest;
 import com.android.volley.toolbox.Volley;
 import com.bumptech.glide.Glide;
 import com.example.handicrafts.R;
+import com.example.handicrafts.login.SignupPage;
 import com.example.handicrafts.view.view_data;
 import com.phonepe.intent.sdk.api.B2BPGRequest;
 import com.phonepe.intent.sdk.api.B2BPGRequestBuilder;
@@ -52,7 +53,7 @@ import kotlinx.coroutines.GlobalScope;
 
 public class detail_view extends AppCompatActivity implements PaymentResultListener {
     ImageView images;
-    ImageView backbutton;
+    ImageView backbutton,test;
     TextView description, state, city, title, price, discount,price2;
     LinearLayout buyNow;
     LottieAnimationView animationView,review_anims;
@@ -63,6 +64,7 @@ public class detail_view extends AppCompatActivity implements PaymentResultListe
         super.onCreate(savedInstanceState);
         setContentView(R.layout.item_new);
         review_anims=findViewById(R.id.review_anim);
+        test=findViewById(R.id.share);
         review_anims.setAnimation(R.raw.review);
         review_anims.playAnimation();
         price2=findViewById(R.id.title2);
@@ -93,6 +95,13 @@ public class detail_view extends AppCompatActivity implements PaymentResultListe
             @Override
             public void onClick(View view) {
                 razorPay();
+            }
+        });
+        test.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent i=new Intent(detail_view.this, SignupPage.class);
+                startActivity(i);
             }
         });
 
