@@ -79,6 +79,7 @@ public class SignupPage extends AppCompatActivity {
             public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
                  select_state = String.valueOf(stateDropDown.getSelectedItem());
 
+
             }
 
             @Override
@@ -121,8 +122,8 @@ public class SignupPage extends AppCompatActivity {
 
        String state= select_state;
 
-        String pincode=userpincode.getText().toString();
-        String city=usercity.getText().toString();
+        String pincode=userpincode.getText().toString().trim();
+        String city=usercity.getText().toString().trim();
         if(TextUtils.isEmpty(name)&&TextUtils.isEmpty(password)&&TextUtils.isEmpty(email)&&TextUtils.isEmpty(gender)&&TextUtils.isEmpty(city)){
             Toast.makeText(this, "Please fill all details", Toast.LENGTH_SHORT).show();
             userpincode.setError("all fields are required");
@@ -130,7 +131,7 @@ public class SignupPage extends AppCompatActivity {
             userpassword.requestFocus();
         }
         else {
-            Addtotable(name,password,email,password,pincode,gender,state);
+            Addtotable(name,email,password,city,pincode,gender,state);
         }
 
 
@@ -138,7 +139,7 @@ public class SignupPage extends AppCompatActivity {
 
     }
 
-    private void Addtotable(String city, String name, String email, String password, String pincode , String gender, String state) {
+    private void Addtotable(String name, String email, String password, String city, String pincode , String gender, String state) {
         String url = "https://handmadehavens.com/user.php";
         RequestQueue requestQueue = Volley.newRequestQueue(this);
         StringRequest request = new StringRequest(Request.Method.POST, url, new Response.Listener<String>() {
@@ -147,7 +148,7 @@ public class SignupPage extends AppCompatActivity {
                 // JSONStringer stringer=new JSONStringer();
                 // JSONObject object = new JSONObject(response);
                 // String message = object.getString("message");
-                usercity.setText("");
+
 
                 Toast.makeText(SignupPage.this,response.toString(), Toast.LENGTH_SHORT).show();
 
@@ -172,8 +173,9 @@ public class SignupPage extends AppCompatActivity {
                 params.put("name", name);
                 params.put("email", email);
                 params.put("password", password);
-                params.put("pincode", pincode);
                 params.put("city", city);
+                params.put("pincode", pincode);
+
                 params.put("state",state);
                 params.put("gender",gender);
 
@@ -205,6 +207,13 @@ public class SignupPage extends AppCompatActivity {
             state.add(new GenderSpinnerDataClass("Select State", R.color.white));
             state.add(new GenderSpinnerDataClass("Himachal Pradesh", R.color.white));
             state.add(new GenderSpinnerDataClass("Maharashtra", R.color.white));
+        state.add(new GenderSpinnerDataClass("Tamil Nadu", R.color.white));
+        state.add(new GenderSpinnerDataClass("Madhya Pradesh", R.color.white));
+        state.add(new GenderSpinnerDataClass("Sikkim", R.color.white));
+        state.add(new GenderSpinnerDataClass("Nagaland", R.color.white));
+        state.add(new GenderSpinnerDataClass("Utrakhand", R.color.white));
+        state.add(new GenderSpinnerDataClass("Telangana", R.color.white));
+        state.add(new GenderSpinnerDataClass("Assam", R.color.white));
             state.add(new GenderSpinnerDataClass("Chhattisgarh ", R.color.white));
             state.add(new GenderSpinnerDataClass("Punjab ", R.color.white));
             state.add(new GenderSpinnerDataClass("Chandigarh ", R.color.white));
