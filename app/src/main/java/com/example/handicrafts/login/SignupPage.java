@@ -92,6 +92,7 @@ public class SignupPage extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 adddata( );
+
             }
 
         });
@@ -148,6 +149,8 @@ public class SignupPage extends AppCompatActivity {
                 // JSONStringer stringer=new JSONStringer();
                 // JSONObject object = new JSONObject(response);
                 // String message = object.getString("message");
+                Intent intent=new Intent(SignupPage.this,Home.class);
+                startActivity(intent);
 
 
                 Toast.makeText(SignupPage.this,response.toString(), Toast.LENGTH_SHORT).show();

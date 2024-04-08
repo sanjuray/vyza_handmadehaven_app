@@ -8,6 +8,8 @@ import android.os.Handler;
 import android.view.animation.Animation;
 import android.view.animation.AnimationUtils;
 import android.widget.ImageView;
+
+import com.example.handicrafts.login.SignupPage;
 //sdp library for supporting all screen size
 
 public class splash extends AppCompatActivity {
@@ -27,7 +29,7 @@ public class splash extends AppCompatActivity {
             @Override
             public void run() {
 
-                Intent mainIntent = new Intent(splash.this,Home.class);
+                Intent mainIntent = new Intent(splash.this, SignupPage.class);
                 splash.this.startActivity(mainIntent);
                 splash.this.finish();
             }
