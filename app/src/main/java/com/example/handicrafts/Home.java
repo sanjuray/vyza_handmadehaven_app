@@ -43,11 +43,11 @@ public class Home extends AppCompatActivity {
          //   }
        // });
 
-        if (savedInstanceState == null) {
-            getSupportFragmentManager().beginTransaction()
-                    .replace(R.id.frame, new homefragment())
-                    .commit();
-        }
+       // if (savedInstanceState == null) {
+           // getSupportFragmentManager().beginTransaction()
+                 //   .replace(R.id.frame, new homefragment())
+                  //  .commit();
+     //   }
         navigationView=findViewById(R.id.bottom_nav);
 
         navigationView.setOnItemSelectedListener(new NavigationBarView.OnItemSelectedListener() {

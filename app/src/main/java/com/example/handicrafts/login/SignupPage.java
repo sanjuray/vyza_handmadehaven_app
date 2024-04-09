@@ -1,7 +1,9 @@
 package com.example.handicrafts.login;
 
 
+import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.text.TextUtils;
 import android.view.View;
@@ -22,6 +24,7 @@ import com.android.volley.toolbox.StringRequest;
 import com.android.volley.toolbox.Volley;
 import com.example.handicrafts.Home;
 import com.example.handicrafts.R;
+import com.example.handicrafts.splash;
 import com.google.android.material.textfield.TextInputEditText;
 
 import org.json.JSONException;
@@ -49,6 +52,7 @@ public class SignupPage extends AppCompatActivity {
     Spinner genderDropDown,stateDropDown;
     String select_state;
     String select_gender;
+    Boolean islogin;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -96,6 +100,7 @@ public class SignupPage extends AppCompatActivity {
             }
 
         });
+
         backToHome.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -125,10 +130,11 @@ public class SignupPage extends AppCompatActivity {
 
         String pincode=userpincode.getText().toString().trim();
         String city=usercity.getText().toString().trim();
-        if(TextUtils.isEmpty(name)&&TextUtils.isEmpty(password)&&TextUtils.isEmpty(email)&&TextUtils.isEmpty(gender)&&TextUtils.isEmpty(city)){
+        if(TextUtils.isEmpty(name)&&TextUtils.isEmpty(password)&&TextUtils.isEmpty(email)&&TextUtils.isEmpty(city)){
             Toast.makeText(this, "Please fill all details", Toast.LENGTH_SHORT).show();
             userpincode.setError("all fields are required");
             useremail.requestFocus();
+            usercity.requestFocus();
             userpassword.requestFocus();
         }
         else {
@@ -141,25 +147,38 @@ public class SignupPage extends AppCompatActivity {
     }
 
     private void Addtotable(String name, String email, String password, String city, String pincode , String gender, String state) {
-        String url = "https://handmadehavens.com/user.php";
+       // String url = "https://handmadehavens.com/user.php";
+       String url = "https://handmadehavens.com/newsignup.php";
         RequestQueue requestQueue = Volley.newRequestQueue(this);
         StringRequest request = new StringRequest(Request.Method.POST, url, new Response.Listener<String>() {
             @Override
             public void onResponse(String response) {
-                // JSONStringer stringer=new JSONStringer();
-                // JSONObject object = new JSONObject(response);
-                // String message = object.getString("message");
-                Intent intent=new Intent(SignupPage.this,Home.class);
-                startActivity(intent);
+
+                try {
+                    JSONObject jsonResponse = new JSONObject(response);
+                    boolean success = jsonResponse.getBoolean("success");
+                    if(success) {
+                        int userId = jsonResponse.getInt("user_id");
+                        Toast.makeText(SignupPage.this, "signed up with:" + userId, Toast.LENGTH_SHORT).show();
+                        islogin = true;
+                        senddata(userId);
+                        Intent intent = new Intent(SignupPage.this, Home.class);
+                        startActivity(intent);
+                        finish();
+                    }
+                } catch (JSONException e) {
+                    throw new RuntimeException(e);
+                }
 
 
-                Toast.makeText(SignupPage.this,response.toString(), Toast.LENGTH_SHORT).show();
+
+
 
             }
         }, new Response.ErrorListener() {
             @Override
             public void onErrorResponse(VolleyError error) {
-                Toast.makeText(SignupPage.this, "Not sucessfull", Toast.LENGTH_SHORT).show();
+                Toast.makeText(SignupPage.this, "Not Successfull", Toast.LENGTH_SHORT).show();
 
             }
         }) {
@@ -178,20 +197,28 @@ public class SignupPage extends AppCompatActivity {
                 params.put("password", password);
                 params.put("city", city);
                 params.put("pincode", pincode);
-
                 params.put("state",state);
                 params.put("gender",gender);
-
-
 
                 return params;
             }
         };
+
         requestQueue.add(request);
     }
 
+    public void senddata(int userid) {
+        SharedPreferences sharedPreferences = getSharedPreferences("MyPrefs", Context.MODE_PRIVATE);
+        SharedPreferences.Editor editor = sharedPreferences.edit();
+        editor.putInt("userId", userid); // Save the user ID
+        editor.apply();
 
-        public void genderSpinner () {
+        Intent intent1=new Intent(SignupPage.this, splash.class);
+
+    }
+
+
+    public void genderSpinner () {
             gender.add(new GenderSpinnerDataClass("Gender", R.color.white));
             gender.add(new GenderSpinnerDataClass("Male", R.drawable.ic_male_24));
             gender.add(new GenderSpinnerDataClass("Female", R.drawable.ic_female_24));
@@ -214,7 +241,7 @@ public class SignupPage extends AppCompatActivity {
         state.add(new GenderSpinnerDataClass("Madhya Pradesh", R.color.white));
         state.add(new GenderSpinnerDataClass("Sikkim", R.color.white));
         state.add(new GenderSpinnerDataClass("Nagaland", R.color.white));
-        state.add(new GenderSpinnerDataClass("Utrakhand", R.color.white));
+        state.add(new GenderSpinnerDataClass("Uttrakhand", R.color.white));
         state.add(new GenderSpinnerDataClass("Telangana", R.color.white));
         state.add(new GenderSpinnerDataClass("Assam", R.color.white));
             state.add(new GenderSpinnerDataClass("Chhattisgarh ", R.color.white));

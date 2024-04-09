@@ -56,7 +56,7 @@ public class detail_view extends AppCompatActivity implements PaymentResultListe
     ImageView backbutton,test;
     TextView description, state, city, title, price, discount,price2;
     LinearLayout buyNow;
-    LottieAnimationView animationView,review_anims;
+    LottieAnimationView animationView,review_anims,loading;
 
     float realAmount;
     @Override
@@ -68,6 +68,11 @@ public class detail_view extends AppCompatActivity implements PaymentResultListe
         review_anims.setAnimation(R.raw.review);
         review_anims.playAnimation();
         price2=findViewById(R.id.title2);
+        loading=findViewById(R.id.load);
+        loading.setVisibility(View.VISIBLE);
+        loading.setAnimation(R.raw.loading);
+        loading.playAnimation();
+
 
         backbutton = findViewById(R.id.backed);
         images = findViewById(R.id.detail_images);
@@ -81,6 +86,7 @@ public class detail_view extends AppCompatActivity implements PaymentResultListe
         animationView.setAnimation(R.raw.lottie4);
         buyNow = findViewById(R.id.detail_buy_now);
         animationView.playAnimation();
+
         String merchantId = "PGTESTPAYUAT";
         String merchantTransactionId = "98321";
         String apiEndPoint = "/pg/v1/pay";
@@ -190,11 +196,15 @@ public class detail_view extends AppCompatActivity implements PaymentResultListe
                             discount.setText(productDiscount);
                             price2.setText(productName);
 
+
                             // Load product image using Glide
                             Glide.with(detail_view.this)
                                     .load(productImage)
                                     .error(R.drawable.account) // Placeholder image in case of error
                                     .into(images);
+                            loading.setVisibility(View.GONE);
+                            loading.cancelAnimation();
+
                         } catch (JSONException e) {
                             e.printStackTrace();
                             // Handle JSON parsing error
