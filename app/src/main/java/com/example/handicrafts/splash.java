@@ -18,19 +18,15 @@ public class splash extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-       imageView=findViewById(R.id.logo);
+        imageView = findViewById(R.id.logo);
 
         Animation animation= AnimationUtils.loadAnimation(getApplicationContext(),R.anim.anim1);
         imageView.startAnimation(animation);
 
-        new Handler().postDelayed(new Runnable(){
-            @Override
-            public void run() {
-
-                Intent mainIntent = new Intent(splash.this,Home.class);
-                splash.this.startActivity(mainIntent);
-                splash.this.finish();
-            }
+        new Handler().postDelayed(() -> {
+            Intent mainIntent = new Intent(splash.this,Home.class);
+            startActivity(mainIntent);
+            finish();
         },3000);
 
 
