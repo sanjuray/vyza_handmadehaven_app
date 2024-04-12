@@ -11,6 +11,7 @@
         android:layout_height="@dimen/_180sdp"
         android:elevation="@dimen/_7sdp"
         android:background="@color/bright"
+        android:layout_margin="@dimen/_4sdp"
         app:cardCornerRadius="@dimen/_3sdp"
         android:id="@+id/card">
 
