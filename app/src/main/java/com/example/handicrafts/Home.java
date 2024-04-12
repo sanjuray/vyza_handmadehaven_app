@@ -7,8 +7,14 @@ import androidx.appcompat.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.MenuItem;
 
+import android.content.Intent;
+import android.os.Bundle;
+import android.view.MenuItem;
+import android.view.View;
+
 
 import com.example.handicrafts.categories.catFragment;
+import com.example.handicrafts.fav.favFragment;
 import com.example.handicrafts.fav.test_activity;
 import com.example.handicrafts.home.homefragment;
 
@@ -16,6 +22,9 @@ import com.example.handicrafts.home.homefragment;
 import com.example.handicrafts.profile.accountFragment;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 
+import com.example.handicrafts.login.SignupPage;
+import com.example.handicrafts.profile.accountFragment;
+import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.google.android.material.navigation.NavigationBarView;
 
@@ -31,7 +40,7 @@ public class Home extends AppCompatActivity {
         setContentView(R.layout.activity_home);
         if (savedInstanceState == null) {
             getSupportFragmentManager().beginTransaction()
-                    .replace(R.id.frame, new homefragment())
+                    .replace(R.id.frame, new HomeFragment())
                     .commit();
         }
 
@@ -43,11 +52,11 @@ public class Home extends AppCompatActivity {
          //   }
        // });
 
-       // if (savedInstanceState == null) {
-           // getSupportFragmentManager().beginTransaction()
-                 //   .replace(R.id.frame, new homefragment())
-                  //  .commit();
-     //   }
+        if (savedInstanceState == null) {
+            getSupportFragmentManager().beginTransaction()
+                    .replace(R.id.frame, new homefragment())
+                    .commit();
+        }
         navigationView=findViewById(R.id.bottom_nav);
 
         navigationView.setOnItemSelectedListener(new NavigationBarView.OnItemSelectedListener() {

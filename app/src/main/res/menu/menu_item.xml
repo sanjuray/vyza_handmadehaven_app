@@ -2,25 +2,19 @@
 <menu xmlns:android="http://schemas.android.com/apk/res/android">
 
     <item
-        android:title="HOME"
+        android:title="Home"
         android:id="@+id/item1"
         android:icon="@drawable/home"/>
 
-
-
-
     <item
-        android:title="favourites"
+        android:title="Favourites"
         android:id="@+id/item2"
-        android:icon="@drawable/favourite"
-        />
-
+        android:icon="@drawable/favourite"/>
 
     <item
         android:title="Categories"
         android:id="@+id/item3"
         android:icon="@drawable/category"/>
-
 
     <item
         android:title="Profile"
