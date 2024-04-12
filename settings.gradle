@@ -3,6 +3,7 @@ pluginManagement {
         google()
         mavenCentral()
         gradlePluginPortal()
+
     }
 }
 dependencyResolutionManagement {
@@ -14,6 +15,7 @@ dependencyResolutionManagement {
         maven { url = "https://api.razorpay.com/v1/fetch/android/mvn" }
     }
 }
+
 rootProject.name = "Handicrafts"
 include ':app'
 include ':app:profile'

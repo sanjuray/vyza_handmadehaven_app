@@ -4,6 +4,8 @@
 
     <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
     <uses-permission android:name="android.permission.INTERNET" />
+    <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" />
+    <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
 
     <application
         android:allowBackup="true"
@@ -14,10 +16,23 @@
         android:label="@string/app_name"
         android:supportsRtl="true"
         android:theme="@style/Theme.Handicrafts"
+        android:usesCleartextTraffic="true"
         tools:targetApi="31">
-<!--        <activity-->
-<!--            android:name=".test_activity"-->
-<!--            android:exported="false" />-->
+        <activity
+            android:name=".profile.maps_activity"
+            android:exported="false" />
+        <!--                 https://developers.google.com/maps/documentation/android-sdk/get-api-key -->
+        <meta-data
+            android:name="com.google.android.geo.API_KEY"
+            android:value="@string/api" /> <!-- <activity -->
+        <!-- android:name=".test_activity" -->
+        <!-- android:exported="false" /> -->
+        <activity
+            android:name=".profile.edit_profile"
+            android:exported="false" />
+        <activity
+            android:name=".profile.detail_activity"
+            android:exported="false" />
         <activity
             android:name=".login.LoginPage"
             android:exported="false" />
@@ -26,9 +41,6 @@
             android:exported="false" />
         <activity
             android:name=".Home"
-            android:exported="false" />
-        <activity
-            android:name=".detail_activity"
             android:exported="false" />
         <activity
             android:name=".view.view"

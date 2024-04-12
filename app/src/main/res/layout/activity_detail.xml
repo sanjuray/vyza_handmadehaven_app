@@ -6,10 +6,12 @@
     android:background="@color/bright"
     android:orientation="vertical"
     android:layout_height="match_parent">
+
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="horizontal"
+        android:elevation="@dimen/_20sdp"
 
         android:layout_margin="@dimen/_8sdp"
         android:id="@+id/layout">
@@ -25,7 +27,7 @@
         <TextView
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:text="New Address"
+            android:text="Your Address"
             android:textColor="@color/black"
             android:layout_gravity="center"
             android:textSize="@dimen/_24sdp"
@@ -73,7 +75,17 @@
             android:layout_height="@dimen/_50sdp"
             android:layout_marginTop="@dimen/_1sdp"
             android:background="@drawable/style_4"
-            android:id="@+id/add_name"/>
+            android:id="@+id/add_name">
+            <com.google.android.material.textfield.TextInputEditText
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:background="@drawable/style_4"
+                android:gravity="start"
+                android:textSize="@dimen/_10sdp"
+                android:textColor="@color/black"
+                android:fontFamily="sans-serif"
+                android:inputType="textMultiLine"/>
+        </com.google.android.material.textfield.TextInputLayout>
 
 
 
@@ -148,7 +160,18 @@
                 android:layout_height="@dimen/_50sdp"
                 android:layout_marginTop="@dimen/_1sdp"
                 android:background="@drawable/style_4"
-                android:id="@+id/pin"/>
+                android:id="@+id/pin">
+
+                <com.google.android.material.textfield.TextInputEditText
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:background="@drawable/style_4"
+                    android:gravity="start"
+                    android:textSize="@dimen/_10sdp"
+                    android:textColor="@color/black"
+                    android:fontFamily="sans-serif"
+                    android:inputType="textMultiLine"/>
+            </com.google.android.material.textfield.TextInputLayout>
 
         </LinearLayout>
 
@@ -212,7 +235,17 @@
                 android:layout_height="@dimen/_50sdp"
                 android:layout_marginTop="@dimen/_1sdp"
                 android:background="@drawable/style_4"
-                android:id="@+id/code"/>
+                android:id="@+id/code">
+                <com.google.android.material.textfield.TextInputEditText
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:background="@drawable/style_4"
+                    android:gravity="start"
+                    android:textSize="@dimen/_10sdp"
+                    android:textColor="@color/black"
+                    android:fontFamily="sans-serif"
+                    android:inputType="textMultiLine"/>
+            </com.google.android.material.textfield.TextInputLayout>
         </LinearLayout>
 
         <LinearLayout
@@ -232,7 +265,17 @@
                 android:layout_height="@dimen/_50sdp"
                 android:layout_marginTop="@dimen/_1sdp"
                 android:background="@drawable/style_4"
-                android:id="@+id/phone"/>
+                android:id="@+id/phone">
+                <com.google.android.material.textfield.TextInputEditText
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:background="@drawable/style_4"
+                    android:gravity="start"
+                    android:textSize="@dimen/_10sdp"
+                    android:textColor="@color/black"
+                    android:fontFamily="sans-serif"
+                    android:inputType="textMultiLine"/>
+            </com.google.android.material.textfield.TextInputLayout>
         </LinearLayout>
 
     </LinearLayout>

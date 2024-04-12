@@ -68,7 +68,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="@dimen/_50sdp"
                 android:layout_marginTop="@dimen/_1sdp"
-                android:hint="Enter your Phone number"
+
                 app:boxBackgroundColor="@color/bright"
                 app:boxBackgroundMode="outline"
                 android:gravity="start"
@@ -81,6 +81,7 @@
                     android:layout_height="match_parent"
                     android:autofillHints="phone"
                     android:gravity="start"
+                    android:hint="Enter your Phone number"
                     android:background="@drawable/style_4"
                     android:fontFamily="sans-serif"
                     android:inputType="phone"
@@ -94,7 +95,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="@dimen/_60sdp"
                 android:layout_marginTop="@dimen/_30sdp"
-                android:hint="enter your name"
+
                 app:boxBackgroundMode="outline"
                 app:boxBackgroundColor="@color/bright"
                 app:hintTextColor="@color/black"
@@ -109,7 +110,7 @@
                     android:background="@drawable/style_4"
                     android:fontFamily="sans-serif"
                       android:gravity="start"
-
+                    android:hint="enter your name"
                     android:inputType="textPersonName"
                     android:textColor="@color/black"
                     android:textSize="@dimen/_13sdp" />
@@ -124,7 +125,7 @@
                 app:boxBackgroundMode="outline"
 
 
-                android:hint="enter your mail"
+
 
                 app:boxBackgroundColor="@color/bright"
                 app:hintTextColor="@color/black"
@@ -139,6 +140,7 @@
                     android:background="@drawable/style_4"
                     android:fontFamily="sans-serif"
                     android:gravity="start"
+                    android:hint="enter your mail"
                     android:inputType="textEmailAddress"
                     android:textColor="@color/black"
                     android:textSize="@dimen/_13sdp" />

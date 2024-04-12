@@ -17,10 +17,10 @@ import java.util.ArrayList;
 
 public class grid_adapter extends RecyclerView.Adapter<grid_adapter.view> {
 
-    ArrayList<test_data> models;
+    ArrayList<data> models;
     Context context;
 
-    public grid_adapter(ArrayList<test_data> models, Context context) {
+    public grid_adapter(ArrayList<data> models, Context context) {
         this.models = models;
         this.context = context;
     }
@@ -35,11 +35,11 @@ public class grid_adapter extends RecyclerView.Adapter<grid_adapter.view> {
 
     @Override
     public void onBindViewHolder(@NonNull view holder, int position) {
-        test_data m=models.get(position);
+        data m=models.get(position);
         holder.txt.setText(m.getName());
         holder.price.setText(m.getPrice());
-        holder.discount.setText(m.getDicount());
-        Glide.with(context).load(m.getImage()).into(holder.img);
+        holder.discount.setText(m.getDiscount());
+        Glide.with(context).load(m.getImages()).into(holder.img);
 
 
 

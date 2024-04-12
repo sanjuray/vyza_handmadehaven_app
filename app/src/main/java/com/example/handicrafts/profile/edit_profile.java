@@ -1,4 +1,4 @@
-package com.example.handicrafts;
+package com.example.handicrafts.profile;
 
 import android.os.Bundle;
 import android.view.View;
@@ -6,6 +6,7 @@ import android.widget.ImageButton;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import com.example.handicrafts.R;
 import com.facebook.shimmer.ShimmerFrameLayout;
 
 public class edit_profile extends AppCompatActivity {

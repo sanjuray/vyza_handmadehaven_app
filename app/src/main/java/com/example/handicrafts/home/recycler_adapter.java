@@ -2,27 +2,21 @@ package com.example.handicrafts.home;
 
 
 
-import static androidx.core.content.ContentProviderCompat.requireContext;
-
 import android.content.Context;
 import android.content.Intent;
-import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import androidx.annotation.NonNull;
-import androidx.fragment.app.FragmentManager;
-import androidx.fragment.app.FragmentTransaction;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.airbnb.lottie.LottieAnimationView;
 import com.bumptech.glide.Glide;
 import com.example.handicrafts.R;
 import com.example.handicrafts.detail.detail_view;
-import com.example.handicrafts.fav.fav_activity;
 //import com.example.handicrafts.fav.test_activity;
 
 import java.util.ArrayList;
@@ -32,6 +26,8 @@ import de.hdodenhof.circleimageview.CircleImageView;
 public class recycler_adapter extends RecyclerView.Adapter<recycler_adapter.viewholder> {
     Context context;
     ArrayList<home_data> arrayList;
+
+
     //ArrayList<home_data> filtered_list;
 
 
@@ -56,10 +52,13 @@ public class recycler_adapter extends RecyclerView.Adapter<recycler_adapter.view
         holder.discount.setText(data.getDiscount());
         holder.price.setText(data.getPrice());
 
+
+
         Glide.with(context)
                 .load(data.getImages())
                 .error(R.drawable.account)// Pass the image URL or resource ID here
                 .into(holder.imageView);
+
         //grid view and list view have same adapter
         holder.itemView.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -67,6 +66,7 @@ public class recycler_adapter extends RecyclerView.Adapter<recycler_adapter.view
                 Intent intent=new Intent(context, detail_view.class);
                 intent.putExtra("product_id", data.getProduct_id());
                 intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+
                 context.startActivity(intent);
             }
         });

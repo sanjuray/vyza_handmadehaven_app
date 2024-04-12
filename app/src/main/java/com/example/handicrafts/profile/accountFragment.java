@@ -13,8 +13,6 @@ import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 
 import com.example.handicrafts.R;
-import com.example.handicrafts.detail_activity;
-import com.example.handicrafts.edit_profile;
 import com.facebook.shimmer.ShimmerFrameLayout;
 
 import java.util.ArrayList;
@@ -36,18 +34,16 @@ public class accountFragment extends Fragment {
         listView.setVisibility(View.GONE);
         ArrayList<model> models = new ArrayList<>();
         models.add(new model(R.drawable.baseline_business_24, "Edit profile",R.drawable.baseline_arrow_forward_24));
-        models.add(new model(R.drawable.baseline_business_24, "Address",R.drawable.baseline_arrow_forward_24));
-        models.add(new model(R.drawable.baseline_business_24, "Phone number",R.drawable.baseline_arrow_forward_24));
-        models.add(new model(R.drawable.baseline_business_24, "Contact us",R.drawable.baseline_arrow_forward_24));
-        models.add(new model(R.drawable.baseline_business_24, "Rate us",R.drawable.baseline_arrow_forward_24));
-        models.add(new model(R.drawable.baseline_business_24, "Profile pic",R.drawable.baseline_arrow_forward_24));
-        models.add(new model(R.drawable.baseline_business_24, "Orders",R.drawable.baseline_arrow_forward_24));
+        models.add(new model(R.drawable.baseline_add_home_24, "Address",R.drawable.baseline_arrow_forward_24));
+        models.add(new model(R.drawable.baseline_phone_24, "Phone number",R.drawable.baseline_arrow_forward_24));
+        models.add(new model(R.drawable.baseline_contact_support_24, "Contact us",R.drawable.baseline_arrow_forward_24));
+        models.add(new model(R.drawable.baseline_rate_review_24, "Rate us",R.drawable.baseline_arrow_forward_24));
+        models.add(new model(R.drawable.baseline_bookmark_border_24, "Orders",R.drawable.baseline_arrow_forward_24));
         models.add(new model(R.drawable.baseline_logout_24, "Log out",R.drawable.baseline_arrow_forward_24));
-        // Create custom adapter with the sample data
+
         profile_adapter adapter = new profile_adapter(getContext(), models);
 
 
-        // Set adapter to ListView
         listView.setAdapter(adapter);
         shimmerFrameLayout.postDelayed(() -> {
             shimmerFrameLayout.stopShimmerAnimation();
