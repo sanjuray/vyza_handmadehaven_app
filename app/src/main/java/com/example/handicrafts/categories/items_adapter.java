@@ -66,12 +66,33 @@ public class items_adapter extends RecyclerView.Adapter<items_adapter.viewholder
                     holder.imageView.setImageResource(R.drawable.baseline_arrow_drop_up_24);
                     isclosed = true;
                     newdata=new ArrayList<>();
-                    if(holder.getAdapterPosition()==0){
+
+                    switch (holder.getAdapterPosition()){
+                        case 0 :
                         arunachal();
+
+                        case 1:
+                            assam();
+
+                        case 2:
+                            kerala();
+
+                        case 3:
+                            rajasthan();
+
+                        case 4:
+                            uttrakhand();
+
+                        case 5:
+                            tamil_nadu();
+
+                        case 6:
+                            odisha();
+
+                        case 7 :
+                            andhra();
                     }
-                    if(holder.getAdapterPosition()==1){
-                        assam();
-                    }
+
 
 
 
@@ -97,6 +118,134 @@ public class items_adapter extends RecyclerView.Adapter<items_adapter.viewholder
         });
 
     }
+
+    private void andhra() {
+        RequestQueue requestQueue = Volley.newRequestQueue(context.getApplicationContext());
+        String url="https://handmadehavens.com/testing.php?state=Andhra Pradesh";
+        JsonArrayRequest arrayRequest=new JsonArrayRequest(Request.Method.GET, url, null, new Response.Listener<JSONArray>() {
+            @Override
+            public void onResponse(JSONArray response) {
+                productdata(response);
+            }
+        }, new Response.ErrorListener() {
+            @Override
+            public void onErrorResponse(VolleyError error) {
+                Toast.makeText(context, "App is great and so are you ", Toast.LENGTH_SHORT).show();
+
+            }
+        }
+
+        );
+        requestQueue.add(arrayRequest);
+    }
+
+    // could have passed parameters as state names to url and code rendundancy would have reduced but now wories will take care in future
+    private void odisha() {
+        RequestQueue requestQueue = Volley.newRequestQueue(context.getApplicationContext());
+        String url="https://handmadehavens.com/testing.php?state=Tamil Nadu";
+        JsonArrayRequest arrayRequest=new JsonArrayRequest(Request.Method.GET, url, null, new Response.Listener<JSONArray>() {
+            @Override
+            public void onResponse(JSONArray response) {
+                productdata(response);
+            }
+        }, new Response.ErrorListener() {
+            @Override
+            public void onErrorResponse(VolleyError error) {
+                Toast.makeText(context, "App is great and so are you ", Toast.LENGTH_SHORT).show();
+
+            }
+        }
+
+        );
+        requestQueue.add(arrayRequest);
+    }
+
+    private void tamil_nadu() {
+        RequestQueue requestQueue = Volley.newRequestQueue(context.getApplicationContext());
+        String url="https://handmadehavens.com/testing.php?state=Tamil Nadu";
+        JsonArrayRequest arrayRequest=new JsonArrayRequest(Request.Method.GET, url, null, new Response.Listener<JSONArray>() {
+            @Override
+            public void onResponse(JSONArray response) {
+                productdata(response);
+            }
+        }, new Response.ErrorListener() {
+            @Override
+            public void onErrorResponse(VolleyError error) {
+                Toast.makeText(context, "App is great and so are you ", Toast.LENGTH_SHORT).show();
+
+            }
+        }
+
+        );
+        requestQueue.add(arrayRequest);
+    }
+
+    private void uttrakhand() {
+        RequestQueue requestQueue = Volley.newRequestQueue(context.getApplicationContext());
+        String url="https://handmadehavens.com/testing.php?state=uttarakhand";
+        JsonArrayRequest arrayRequest=new JsonArrayRequest(Request.Method.GET, url, null, new Response.Listener<JSONArray>() {
+            @Override
+            public void onResponse(JSONArray response) {
+                productdata(response);
+            }
+        }, new Response.ErrorListener() {
+            @Override
+            public void onErrorResponse(VolleyError error) {
+                Toast.makeText(context, "App is great and so are you ", Toast.LENGTH_SHORT).show();
+
+            }
+        }
+
+        );
+        requestQueue.add(arrayRequest);
+
+    }
+
+
+    private void rajasthan() {
+        RequestQueue requestQueue = Volley.newRequestQueue(context.getApplicationContext());
+        String url="https://handmadehavens.com/testing.php?state=rajasthan";
+        JsonArrayRequest arrayRequest=new JsonArrayRequest(Request.Method.GET, url, null, new Response.Listener<JSONArray>() {
+            @Override
+            public void onResponse(JSONArray response) {
+                productdata(response);
+            }
+        }, new Response.ErrorListener() {
+            @Override
+            public void onErrorResponse(VolleyError error) {
+                Toast.makeText(context, "App is great and so are you ", Toast.LENGTH_SHORT).show();
+
+            }
+        }
+
+        );
+        requestQueue.add(arrayRequest);
+
+    }
+
+
+
+    private void kerala() {
+        RequestQueue requestQueue = Volley.newRequestQueue(context.getApplicationContext());
+        String url="https://handmadehavens.com/testing.php?state=kerala";
+        JsonArrayRequest arrayRequest=new JsonArrayRequest(Request.Method.GET, url, null, new Response.Listener<JSONArray>() {
+            @Override
+            public void onResponse(JSONArray response) {
+                productdata(response);
+            }
+        }, new Response.ErrorListener() {
+            @Override
+            public void onErrorResponse(VolleyError error) {
+                Toast.makeText(context, "App is great and so are you ", Toast.LENGTH_SHORT).show();
+
+            }
+        }
+
+        );
+        requestQueue.add(arrayRequest);
+
+    }
+
 
     private void assam() {
         RequestQueue requestQueue = Volley.newRequestQueue(context.getApplicationContext());

@@ -79,9 +79,10 @@
             <com.google.android.material.textfield.TextInputEditText
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
+                android:id="@+id/detail_name"
                 android:background="@drawable/style_4"
                 android:gravity="start"
-                android:textSize="@dimen/_10sdp"
+                android:textSize="@dimen/_17sdp"
                 android:textColor="@color/black"
                 android:fontFamily="sans-serif"
                 android:inputType="textMultiLine"/>
@@ -118,9 +119,10 @@
             <com.google.android.material.textfield.TextInputEditText
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
+                android:id="@+id/detail_address"
                 android:background="@drawable/style_4"
                 android:gravity="start"
-                android:textSize="@dimen/_10sdp"
+                android:textSize="@dimen/_14sdp"
                 android:textColor="@color/black"
                 android:fontFamily="sans-serif"
                 android:inputType="textMultiLine"/>
@@ -167,7 +169,8 @@
                     android:layout_height="match_parent"
                     android:background="@drawable/style_4"
                     android:gravity="start"
-                    android:textSize="@dimen/_10sdp"
+                    android:id="@+id/detail_state"
+                    android:textSize="@dimen/_15sdp"
                     android:textColor="@color/black"
                     android:fontFamily="sans-serif"
                     android:inputType="textMultiLine"/>
@@ -193,12 +196,18 @@
                 android:layout_marginTop="@dimen/_1sdp"
                 android:background="@drawable/style_4"
                 android:id="@+id/state">
-                <Spinner
+                <com.google.android.material.textfield.TextInputEditText
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
+                    android:background="@drawable/style_4"
+                    android:id="@+id/detail_city"
+                    android:gravity="start"
+                    android:textSize="@dimen/_15sdp"
+                    android:textColor="@color/black"
+                    android:fontFamily="sans-serif"
+                    android:inputType="textMultiLine"/>
 
-                    android:backgroundTint="@color/black"
-                    android:id="@+id/spinner"/>
+
 
 
 
@@ -241,6 +250,7 @@
                     android:layout_height="match_parent"
                     android:background="@drawable/style_4"
                     android:gravity="start"
+                    android:id="@+id/detail_pin"
                     android:textSize="@dimen/_10sdp"
                     android:textColor="@color/black"
                     android:fontFamily="sans-serif"
@@ -271,7 +281,9 @@
                     android:layout_height="match_parent"
                     android:background="@drawable/style_4"
                     android:gravity="start"
-                    android:textSize="@dimen/_10sdp"
+                    android:id="@+id/deatil_contact"
+
+                    android:textSize="@dimen/_14sdp"
                     android:textColor="@color/black"
                     android:fontFamily="sans-serif"
                     android:inputType="textMultiLine"/>
@@ -283,15 +295,16 @@
     <com.google.android.material.button.MaterialButton
         android:id="@+id/save"
         android:layout_width="match_parent"
-        android:layout_height="@dimen/_50sdp"
+        android:layout_height="@dimen/_45sdp"
         android:layout_below="@id/relative_5"
         android:layout_centerHorizontal="true"
         android:layout_marginStart="@dimen/_50sdp"
-        android:layout_marginTop="@dimen/_7sdp"
+        android:layout_marginTop="@dimen/_10sdp"
         android:layout_marginEnd="@dimen/_50sdp"
         android:layout_marginBottom="@dimen/_50sdp"
         android:backgroundTint="@color/grey"
-        android:text="Save "
+        android:text="Save DEtails "
+
         android:textColor="@color/black"
         android:textSize="@dimen/_23sdp"
         app:cornerRadius="@dimen/_10sdp" />

@@ -35,13 +35,13 @@ public class splash extends AppCompatActivity {
         SharedPreferences sharedPreferences = getSharedPreferences("MyPrefs", Context.MODE_PRIVATE);
         int userId = sharedPreferences.getInt("userId", -1); // -1 is the default value if userId is not found
 
-            //int userid=getIntent().getIntExtra("user",-1);
 
 
 
 
 
-        if(userId>=0){
+
+        if(userId!=-1){
             new Handler().postDelayed(new Runnable(){
                 @Override
                 public void run() {
@@ -63,16 +63,6 @@ public class splash extends AppCompatActivity {
                 }
             },2000);
         }
-
-       /* new Handler().postDelayed(new Runnable(){
-            @Override
-            public void run() {
-
-                Intent mainIntent = new Intent(splash.this, SignupPage.class);
-                splash.this.startActivity(mainIntent);
-                splash.this.finish();
-            }
-        },3000);*/
 
 
 

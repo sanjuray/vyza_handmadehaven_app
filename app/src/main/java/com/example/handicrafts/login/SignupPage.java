@@ -130,13 +130,18 @@ public class SignupPage extends AppCompatActivity {
 
         String pincode=userpincode.getText().toString().trim();
         String city=usercity.getText().toString().trim();
+
+
         if(TextUtils.isEmpty(name)&&TextUtils.isEmpty(password)&&TextUtils.isEmpty(email)&&TextUtils.isEmpty(city)){
             Toast.makeText(this, "Please fill all details", Toast.LENGTH_SHORT).show();
             userpincode.setError("all fields are required");
             useremail.requestFocus();
             usercity.requestFocus();
             userpassword.requestFocus();
+
+
         }
+
         else {
             Addtotable(name,email,password,city,pincode,gender,state);
         }
@@ -147,7 +152,7 @@ public class SignupPage extends AppCompatActivity {
     }
 
     private void Addtotable(String name, String email, String password, String city, String pincode , String gender, String state) {
-       // String url = "https://handmadehavens.com/user.php";
+
        String url = "https://handmadehavens.com/newsignup.php";
         RequestQueue requestQueue = Volley.newRequestQueue(this);
         StringRequest request = new StringRequest(Request.Method.POST, url, new Response.Listener<String>() {
@@ -162,6 +167,7 @@ public class SignupPage extends AppCompatActivity {
                         Toast.makeText(SignupPage.this, "signed up with:" + userId, Toast.LENGTH_SHORT).show();
                         islogin = true;
                         senddata(userId);
+                        shared();
                         Intent intent = new Intent(SignupPage.this, Home.class);
                         startActivity(intent);
                         finish();
@@ -207,13 +213,20 @@ public class SignupPage extends AppCompatActivity {
         requestQueue.add(request);
     }
 
+    public void shared() {
+        SharedPreferences preferences=getSharedPreferences("data",Context.MODE_PRIVATE);
+        SharedPreferences.Editor editor=preferences.edit();
+        editor.putString("name", username.getText().toString());
+        editor.apply();
+    }
+
     public void senddata(int userid) {
         SharedPreferences sharedPreferences = getSharedPreferences("MyPrefs", Context.MODE_PRIVATE);
         SharedPreferences.Editor editor = sharedPreferences.edit();
-        editor.putInt("userId", userid); // Save the user ID
+        editor.putInt("userId", userid);
         editor.apply();
 
-        Intent intent1=new Intent(SignupPage.this, splash.class);
+
 
     }
 

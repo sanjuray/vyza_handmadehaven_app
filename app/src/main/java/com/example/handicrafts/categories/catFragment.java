@@ -33,13 +33,14 @@ public class catFragment extends Fragment {
         recyclerView=view.findViewById(R.id.recyler);
 
         arrayList=new ArrayList<>();
-        arrayList.add(new state_data(R.drawable.images,R.drawable.baseline_arrow_drop_down_24,"AndhraPradesh Handicrafts"));
-        arrayList.add(new state_data(R.drawable.arunachal,R.drawable.baseline_arrow_drop_down_24,"Nagaland Handicrafts"));
+        arrayList.add(new state_data(R.drawable.images,R.drawable.baseline_arrow_drop_down_24,"Arunachal Pradesh Handicrafts"));
+        arrayList.add(new state_data(R.drawable.arunachal,R.drawable.baseline_arrow_drop_down_24,"Assam Handicrafts"));
         arrayList.add(new state_data(R.drawable.arunachal2,R.drawable.baseline_arrow_drop_down_24,"Kerala Handicrafts"));
-        arrayList.add(new state_data(R.drawable.punjab,R.drawable.baseline_arrow_drop_down_24," Punjab Handicrafts"));
-        arrayList.add(new state_data(R.drawable.images,R.drawable.baseline_arrow_drop_down_24,"Rajashan Handicrafts"));
-        arrayList.add(new state_data(R.drawable.arunachal2,R.drawable.baseline_arrow_drop_down_24,"odisha  Handicrafts"));
-        arrayList.add(new state_data(R.drawable.arunachal,R.drawable.baseline_arrow_drop_down_24,"TamilNadu Handicrafts"));
+        arrayList.add(new state_data(R.drawable.punjab,R.drawable.baseline_arrow_drop_down_24," Rajasthan Handicrafts"));
+        arrayList.add(new state_data(R.drawable.images,R.drawable.baseline_arrow_drop_down_24,"Uttarakhand Handicrafts"));
+        arrayList.add(new state_data(R.drawable.arunachal2,R.drawable.baseline_arrow_drop_down_24,"Tamil Nadu  Handicrafts"));
+        arrayList.add(new state_data(R.drawable.arunachal,R.drawable.baseline_arrow_drop_down_24,"Odisha Handicrafts"));
+        arrayList.add(new state_data(R.drawable.arunachal,R.drawable.baseline_arrow_drop_down_24,"Andhra Pradesh Handicrafts"));
         adapter=new items_adapter(arrayList,getContext());
         RecyclerView.LayoutManager layoutManager = new LinearLayoutManager(getContext(), LinearLayoutManager.VERTICAL, false);
         recyclerView.setLayoutManager(layoutManager);
