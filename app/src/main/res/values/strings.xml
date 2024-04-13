@@ -1,5 +1,9 @@
 <resources>
     <string name="app_name">Handicrafts</string>
+    <string name="logo_desc">HandMade Haven Logo</string>
+
+    <string name="api_key_razorpay">rzp_test_Nqy8gmPWtyPySL</string>
+
     <string name="arunamchal"><u>
         Arunachal Handicrafts
     </u>

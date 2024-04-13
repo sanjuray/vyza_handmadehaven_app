@@ -14,7 +14,7 @@ import android.view.View;
 
 
 import com.example.handicrafts.categories.catFragment;
-import com.example.handicrafts.fav.favFragment;
+//import com.example.handicrafts.fav.favFragment;
 import com.example.handicrafts.fav.test_activity;
 import com.example.handicrafts.home.homefragment;
 
@@ -40,7 +40,7 @@ public class Home extends AppCompatActivity {
         setContentView(R.layout.activity_home);
         if (savedInstanceState == null) {
             getSupportFragmentManager().beginTransaction()
-                    .replace(R.id.frame, new HomeFragment())
+                    .replace(R.id.frame, new homefragment())
                     .commit();
         }
 
