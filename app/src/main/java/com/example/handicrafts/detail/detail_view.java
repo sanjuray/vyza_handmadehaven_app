@@ -213,7 +213,7 @@ public class detail_view extends AppCompatActivity implements PaymentResultWithD
 //            data.put("merchantUserId", "9876543"); --> optional for testing used for getting card details and etc
             data.put("amount", paymentAmount*100);
             data.put("mobileNumber", "9876543210");
-            data.put("callbackUrl", "https://handmadehavens.com/webhook/callback.php");
+            data.put("callbackUrl", "https://webhook.site/bf0f91b3-280b-4e90-a56f-a2dd81f7e8ee");
 
             JSONObject paymentInstrument = new JSONObject();
             paymentInstrument.put("type", "PAY_PAGE");

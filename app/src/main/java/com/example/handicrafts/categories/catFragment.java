@@ -20,8 +20,6 @@ import java.util.ArrayList;
 
 public class catFragment extends Fragment {
 
-
-
     ArrayList<state_data> arrayList;
     RecyclerView recyclerView;
     items_adapter adapter;
