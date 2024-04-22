@@ -36,6 +36,21 @@ public class detail_activity extends AppCompatActivity {
         contact=findViewById(R.id.deatil_contact);
         save=findViewById(R.id.save);
 
+        SharedPreferences preferences=getSharedPreferences("Edit_preference",Context.MODE_PRIVATE);
+        String n=preferences.getString("detail_name","");
+        String a=preferences.getString("detail_address","");
+        String c=preferences.getString("detail_contact","");
+        String p=preferences.getString("detail_pin","");
+        String s=preferences.getString("detail_state","");
+        String r=preferences.getString("detail_city","");
+
+        name.setText(n);
+        adress_line.setText(a);
+        state.setText(s);
+        contact.setText(c);
+        pincode.setText(p);
+        city.setText(r);
+
         save.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -65,6 +80,13 @@ public class detail_activity extends AppCompatActivity {
 
                 }
                 else {
+                    name.setText(save_name);
+                    city.setText(save_city);
+                    state.setText(save_state);
+                    pincode.setText(save_pin);
+                    contact.setText(save_contact);
+                    adress_line.setText(save_addess);
+
                     save_shared(save_name,save_addess,save_city,save_state,save_pin,save_contact);
                 }
 
@@ -97,16 +119,19 @@ public class detail_activity extends AppCompatActivity {
         });
     }
 
-    private void save_shared(String save_name, String save_addess, String save_city, String save_state, String save_pin, String save_contact) {
+    public  void save_shared(String save_name, String save_addess, String save_city, String save_state, String save_pin, String save_contact) {
        // to store loacally the data
         SharedPreferences preferences=getSharedPreferences("Edit_prefernece", Context.MODE_PRIVATE);
         SharedPreferences.Editor editor=preferences.edit();
         editor.putString("detail_name",save_name);
+
+
         editor.putString("detail_address",save_addess);
         editor.putString("detail_city",save_city);
         editor.putString("detail_state",save_state);
         editor.putString("detail_pin",save_pin);
         editor.putString("detail_contact",save_contact);
+
         editor.apply();
     }
 }

@@ -101,16 +101,14 @@ public class SignupPage extends AppCompatActivity {
 
         });
 
-        backToHome.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                startActivity(new Intent(SignupPage.this, Home.class));
-            }
-        });
+
         gotoLogin.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                startActivity(new Intent(SignupPage.this, LoginPage.class));
+                Intent intent=new Intent(SignupPage.this,LoginPage.class);
+                startActivity(intent);
+
+
             }
         });
 
@@ -164,7 +162,8 @@ public class SignupPage extends AppCompatActivity {
                     boolean success = jsonResponse.getBoolean("success");
                     if(success) {
                         int userId = jsonResponse.getInt("user_id");
-                        Toast.makeText(SignupPage.this, "signed up with:" + userId, Toast.LENGTH_SHORT).show();
+                        Toast.makeText(SignupPage.this, "signed up with"+userId, Toast.LENGTH_SHORT).show();
+
                         islogin = true;
                         senddata(userId);
                         shared();
@@ -184,7 +183,7 @@ public class SignupPage extends AppCompatActivity {
         }, new Response.ErrorListener() {
             @Override
             public void onErrorResponse(VolleyError error) {
-                Toast.makeText(SignupPage.this, "Not Successfull", Toast.LENGTH_SHORT).show();
+                Toast.makeText(SignupPage.this, "Not Succesfull", Toast.LENGTH_SHORT).show();
 
             }
         }) {

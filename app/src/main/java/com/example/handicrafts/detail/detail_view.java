@@ -65,7 +65,7 @@ public class detail_view extends AppCompatActivity implements PaymentResultWithD
     ImageView backButton;
     TextView description, state, city, title, price, discount,price2;
     LinearLayout buyNow;
-    LottieAnimationView animationView;
+    LottieAnimationView animationView,animationViews;
 
     Checkout checkout;
 
@@ -89,9 +89,16 @@ public class detail_view extends AppCompatActivity implements PaymentResultWithD
         price = findViewById(R.id.price);
         discount = findViewById(R.id.detail_discount);
         animationView = findViewById(R.id.lottie);
-        animationView.setAnimation(R.raw.lottie4);
+
         buyNow = findViewById(R.id.detail_buy_now);
+        animationView.setAnimation(R.raw.lottie4);
         animationView.playAnimation();
+
+
+        animationViews=findViewById(R.id.review_anim);
+        animationViews.setAnimation(R.raw.review);
+        animationViews.playAnimation();
+
 
         String product_id = getIntent().getStringExtra("product_id");
         String url = "https://handmadehavens.com/detail.php?product_id=" + product_id;
@@ -352,6 +359,8 @@ public class detail_view extends AppCompatActivity implements PaymentResultWithD
                                     .load(productImage)
                                     .error(R.drawable.account) // Placeholder image in case of error
                                     .into(images);
+
+
 
                         } catch (JSONException e) {
                             e.printStackTrace();

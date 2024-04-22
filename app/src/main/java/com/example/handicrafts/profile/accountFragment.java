@@ -7,6 +7,7 @@ import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.AdapterView;
 import android.widget.ListView;
 import android.widget.TextView;
 
@@ -28,6 +29,7 @@ import org.json.JSONException;
 import org.json.JSONObject;
 
 import java.util.ArrayList;
+import java.util.Objects;
 
 public class accountFragment extends Fragment {
     ShimmerFrameLayout shimmerFrameLayout;
@@ -80,12 +82,18 @@ public class accountFragment extends Fragment {
 
        });
 
-       listView.setOnClickListener(new View.OnClickListener() {
-           @Override
-           public void onClick(View view) {
-              logout_app();
-           }
-       });
+       listView.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+                                              @Override
+                                              public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
+                                                  logout_app();
+                                              }
+
+                                              @Override
+                                              public void onNothingSelected(AdapterView<?> adapterView) {
+
+                                              }
+                                          });
+
 
        addresses.setOnClickListener(new View.OnClickListener() {
            @Override
@@ -102,14 +110,14 @@ public class accountFragment extends Fragment {
     }
 
     private void logout_app() {
-        Intent intent=new Intent(getActivity(), LoginPage.class);
+        Intent intent=new Intent(getContext(), LoginPage.class);
         intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
-        startActivity(intent);
+        getContext().startActivity(intent);
 
         SharedPreferences preferences= getActivity().getSharedPreferences("MyPrefs",Context.MODE_PRIVATE);
         SharedPreferences.Editor editor=preferences.edit();
         editor.putInt("userId",-1);
-        editor.commit();
+        editor.apply();
     }
 
     public void getall() {

@@ -16,8 +16,9 @@ import android.widget.FrameLayout;
 import android.widget.Toast;
 
 import com.example.handicrafts.R;
-import com.google.android.gms.location.FusedLocationProviderClient;
-import com.google.android.gms.location.LocationServices;
+
+
+
 import com.google.android.gms.maps.CameraUpdateFactory;
 import com.google.android.gms.maps.GoogleMap;
 import com.google.android.gms.maps.OnMapReadyCallback;
@@ -33,7 +34,7 @@ import java.util.Locale;
 
 public class maps_activity extends FragmentActivity implements OnMapReadyCallback {
     Location currentlocation;
-    FusedLocationProviderClient fusedLocationProviderClient;
+   // FusedLocationProviderClient fusedLocationProviderClient;
     private static final int Request_code=101;
     GoogleMap googleMap;
    // FrameLayout map;
@@ -44,7 +45,7 @@ public class maps_activity extends FragmentActivity implements OnMapReadyCallbac
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_maps);
         map=findViewById(R.id.map);
-        fusedLocationProviderClient = LocationServices.getFusedLocationProviderClient(this);
+      //  fusedLocationProviderClient = LocationServices.getFusedLocationProviderClient(this);
         location();
 
 
@@ -59,7 +60,7 @@ public class maps_activity extends FragmentActivity implements OnMapReadyCallbac
             ActivityCompat.requestPermissions(this,new String[]{Manifest.permission.ACCESS_COARSE_LOCATION},Request_code);
             return;
         }
-        Task<Location> task=fusedLocationProviderClient.getLastLocation();
+      /*  Task<Location> task=fusedLocationProviderClient.getLastLocation();
         task.addOnSuccessListener(new OnSuccessListener<Location>() {
             @Override
             public void onSuccess(Location location) {
@@ -72,7 +73,7 @@ public class maps_activity extends FragmentActivity implements OnMapReadyCallbac
 
             }
 
-        });
+        });*/
     }
 
     @Override

@@ -66,33 +66,30 @@ public class items_adapter extends RecyclerView.Adapter<items_adapter.viewholder
                     holder.imageView.setImageResource(R.drawable.baseline_arrow_drop_up_24);
                     isclosed = true;
                     newdata=new ArrayList<>();
-
-                    switch (holder.getAdapterPosition()){
-                        case 0 :
+                    if(holder.getAdapterPosition()==0){
                         arunachal();
-
-                        case 1:
-                            assam();
-
-                        case 2:
-                            kerala();
-
-                        case 3:
-                            rajasthan();
-
-                        case 4:
-                            uttrakhand();
-
-                        case 5:
-                            tamil_nadu();
-
-                        case 6:
-                            odisha();
-
-                        case 7 :
-                            andhra();
                     }
-
+                    if (holder.getAdapterPosition()==1){
+                        assam();
+                    }
+                    if (holder.getAdapterPosition()==2){
+                        kerala();
+                    }
+                    if (holder.getAdapterPosition()==3){
+                         rajasthan();
+                    }
+                    if (holder.getAdapterPosition()==4){
+                        uttrakhand();
+                    }
+                    if (holder.getAdapterPosition()==5){
+                        tamil_nadu();
+                    }
+                    if (holder.getAdapterPosition()==6){
+                        odisha();
+                    }
+                    if (holder.getAdapterPosition()==7){
+                        andhra();
+                    }
 
 
 
@@ -142,7 +139,7 @@ public class items_adapter extends RecyclerView.Adapter<items_adapter.viewholder
     // could have passed parameters as state names to url and code rendundancy would have reduced but now wories will take care in future
     private void odisha() {
         RequestQueue requestQueue = Volley.newRequestQueue(context.getApplicationContext());
-        String url="https://handmadehavens.com/testing.php?state=Tamil Nadu";
+        String url="https://handmadehavens.com/testing.php?state=odisha";
         JsonArrayRequest arrayRequest=new JsonArrayRequest(Request.Method.GET, url, null, new Response.Listener<JSONArray>() {
             @Override
             public void onResponse(JSONArray response) {
@@ -249,7 +246,7 @@ public class items_adapter extends RecyclerView.Adapter<items_adapter.viewholder
 
     private void assam() {
         RequestQueue requestQueue = Volley.newRequestQueue(context.getApplicationContext());
-        String url="https://handmadehavens.com/testing.php?state=Bihar";
+        String url="https://handmadehavens.com/testing.php?state=assam";
         JsonArrayRequest arrayRequest=new JsonArrayRequest(Request.Method.GET, url, null, new Response.Listener<JSONArray>() {
             @Override
             public void onResponse(JSONArray response) {
