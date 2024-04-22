@@ -7,24 +7,16 @@ import androidx.appcompat.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.MenuItem;
 
-import android.content.Intent;
-import android.os.Bundle;
-import android.view.MenuItem;
-import android.view.View;
-
 
 import com.example.handicrafts.categories.catFragment;
-
-import com.example.handicrafts.fav.test_activity;
+//import com.example.handicrafts.fav.favFragment;
+import com.example.handicrafts.fav.Order_fragment;
 import com.example.handicrafts.home.homefragment;
 
 
 import com.example.handicrafts.profile.accountFragment;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 
-import com.example.handicrafts.login.SignupPage;
-import com.example.handicrafts.profile.accountFragment;
-import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.google.android.material.navigation.NavigationBarView;
 
@@ -44,13 +36,7 @@ public class Home extends AppCompatActivity {
                     .commit();
         }
 
-        //floatingActionButton = findViewById(R.id.fab);
-       // floatingActionButton.setOnClickListener(new View.OnClickListener() {
-            //@Override
-           // public void onClick(View view) {
-               // startActivity(new Intent(Home.this, SignupPage.class));
-         //   }
-       // });
+
 
         if (savedInstanceState == null) {
             getSupportFragmentManager().beginTransaction()
@@ -73,7 +59,7 @@ public class Home extends AppCompatActivity {
                      case R.id.item2:
 
                          getSupportFragmentManager().beginTransaction()
-                                 .replace(R.id.frame, new test_activity())
+                                 .replace(R.id.frame, new Order_fragment())
                                  .commit();
                              return  true;
 

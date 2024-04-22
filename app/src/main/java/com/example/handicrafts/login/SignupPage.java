@@ -1,10 +1,16 @@
 package com.example.handicrafts.login;
 
 
+import android.Manifest;
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.content.pm.PackageManager;
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
+import android.net.Uri;
 import android.os.Bundle;
+import android.provider.MediaStore;
 import android.text.TextUtils;
 import android.view.View;
 import android.widget.AdapterView;
@@ -14,7 +20,11 @@ import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.core.app.ActivityCompat;
+import androidx.core.content.ContextCompat;
 
 import com.android.volley.Request;
 import com.android.volley.RequestQueue;
@@ -31,6 +41,8 @@ import org.json.JSONException;
 import org.json.JSONObject;
 import org.json.JSONStringer;
 
+import java.io.FileNotFoundException;
+import java.io.InputStream;
 import java.nio.charset.StandardCharsets;
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -38,13 +50,15 @@ import java.util.List;
 import java.util.Map;
 
 public class SignupPage extends AppCompatActivity {
-   ImageView backToHome,gotoLogin,userImage;
+    private static final int PICK_IMAGE_REQUEST =1 ;
+    ImageView backToHome,gotoLogin,userImage;
       Button signUp;
     GenderSpinnerAdapter genderSpinnerAdapter;
     TextInputEditText username,useremail,userpassword,userpincode,usercity;
 
     StateSpinnerAdapter stateSpinnerAdapter;
     TextView addImage;
+    SharedPreferences preferences;
       List<GenderSpinnerDataClass> gender = new ArrayList<>();
 
       List<GenderSpinnerDataClass> state = new ArrayList<>();
@@ -53,6 +67,7 @@ public class SignupPage extends AppCompatActivity {
     String select_state;
     String select_gender;
     Boolean islogin;
+    static final int PERMISSION_REQUEST_CODE=101;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -64,6 +79,21 @@ public class SignupPage extends AppCompatActivity {
         genderSpinner();
 
         stateSpinner();
+        preferences=getSharedPreferences("signup",MODE_PRIVATE);
+
+        String image_uri=preferences.getString("image","");
+        if(image_uri!=null){
+            Uri image=Uri.parse(image_uri);
+            try {
+
+                InputStream inputStream = getContentResolver().openInputStream(image);
+                Bitmap bitmap = BitmapFactory.decodeStream(inputStream);
+                userImage.setImageBitmap(bitmap);
+            } catch (FileNotFoundException e) {
+                throw new RuntimeException(e);
+            }
+
+        }
         genderDropDown.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
             public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
@@ -92,6 +122,24 @@ public class SignupPage extends AppCompatActivity {
             }
         });
 
+        userImage.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                if(ContextCompat.checkSelfPermission(SignupPage.this, Manifest.permission.READ_EXTERNAL_STORAGE)!= PackageManager.PERMISSION_GRANTED){
+                    ActivityCompat.requestPermissions(SignupPage.this,
+                            new String[]{Manifest.permission.READ_EXTERNAL_STORAGE},
+                            PERMISSION_REQUEST_CODE);
+                }
+
+                else {
+                    chosefromgallery();
+                }
+
+
+
+            }
+        });
+
         signUp.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -114,9 +162,49 @@ public class SignupPage extends AppCompatActivity {
 
     }
 
+    private void chosefromgallery() {
+
+        Intent intent = new Intent(Intent.ACTION_PICK, MediaStore.Images.Media.EXTERNAL_CONTENT_URI);
+        startActivityForResult(intent, PICK_IMAGE_REQUEST);
+    }
 
 
-     public void adddata() {
+    @Override
+    public void onRequestPermissionsResult(int requestCode, @NonNull String[] permissions, @NonNull int[] grantResults) {
+        if (requestCode == PERMISSION_REQUEST_CODE) {
+            if (grantResults.length > 0 && grantResults[0] == PackageManager.PERMISSION_GRANTED) {
+
+                 chosefromgallery();
+            } else {
+
+                Toast.makeText(this, "Permission denied", Toast.LENGTH_SHORT).show();
+            }
+        }
+        super.onRequestPermissionsResult(requestCode, permissions, grantResults);
+    }
+
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
+
+        if (resultCode==PICK_IMAGE_REQUEST&&resultCode==RESULT_OK&&data!=null&&data.getData()!=null){
+            Uri imageuri=data.getData();
+            try {
+                InputStream inputStream=getContentResolver().openInputStream(imageuri);
+                Bitmap bitmap= BitmapFactory.decodeStream(inputStream);
+                userImage.setImageBitmap(bitmap);
+                SharedPreferences.Editor editor=preferences.edit();
+                editor.putString("image",imageuri.toString());
+                editor.apply();
+
+            } catch (FileNotFoundException e) {
+                throw new RuntimeException(e);
+            }
+        }
+
+        super.onActivityResult(requestCode, resultCode, data);
+    }
+
+    public void adddata() {
         //left side name same as of the table headings
         String name=username.getText().toString().trim();
         String password=userpassword.getText().toString().trim();

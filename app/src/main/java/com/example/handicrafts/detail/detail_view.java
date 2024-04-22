@@ -90,7 +90,7 @@ public class detail_view extends AppCompatActivity implements PaymentResultWithD
         discount = findViewById(R.id.detail_discount);
         animationView = findViewById(R.id.lottie);
 
-        buyNow = findViewById(R.id.detail_buy_now);
+        //buyNow = findViewById(R.id.detail_buy_now);
         animationView.setAnimation(R.raw.lottie4);
         animationView.playAnimation();
 
@@ -114,24 +114,15 @@ public class detail_view extends AppCompatActivity implements PaymentResultWithD
 
         buyNow.setOnClickListener(new View.OnClickListener() {
             @Override
-            public void onClick(View view) {
-                AlertDialog.Builder builder = new AlertDialog.Builder(getApplicationContext());
-                builder.setPositiveButton("Proceed", new DialogInterface.OnClickListener() {
-                    public void onClick(DialogInterface dialog, int id) {
-
-//                initPhonePe();
-//                initRazorPay();
-                    }
-                });
-
-                builder.setNegativeButton("Cancel", new DialogInterface.OnClickListener() {
-                    public void onClick(DialogInterface dialog, int id) {
-                        // User cancels the dialog.
-                    }
-                });
-
-                AlertDialog dialog = builder.create();
+            public void onClick(View v) {
+                try {
+                    initPhonePe();
+                } catch (PhonePeInitException e) {
+                    throw new RuntimeException(e);
+                }
+//               initRazorpay();
             }
+
         });
     }
 
@@ -210,7 +201,7 @@ public class detail_view extends AppCompatActivity implements PaymentResultWithD
         Checkout.clearUserData(this);
     }
 
-    private void initPhonePe(){
+    private void initPhonePe() throws PhonePeInitException {
 
         merchantId = "PGTESTPAYUAT";
         merchantTransactionId = "T"+String.valueOf(System.currentTimeMillis());
@@ -218,6 +209,7 @@ public class detail_view extends AppCompatActivity implements PaymentResultWithD
         apiEndPoint = "/pg/v1/pay";
 
         PhonePe.init(this, PhonePeEnvironment.SANDBOX, merchantId, null);
+        Log.v("Checker","onCreate:"+PhonePe.getPackageSignature());
 //
         paymentAmount = Float.parseFloat(price.getText().toString());
         JSONObject data = new JSONObject();
@@ -228,7 +220,7 @@ public class detail_view extends AppCompatActivity implements PaymentResultWithD
 //            data.put("merchantUserId", "9876543"); --> optional for testing used for getting card details and etc
             data.put("amount", paymentAmount*100);
             data.put("mobileNumber", "9876543210");
-            data.put("callbackUrl", "https://webhook.site/37c17c2e-1a94-4933-9197-b60580cb0381");
+            data.put("callbackUrl", "https://webhook.site/bf0f91b3-280b-4e90-a56f-a2dd81f7e8ee");
 
             JSONObject paymentInstrument = new JSONObject();
             paymentInstrument.put("type", "PAY_PAGE");
