@@ -1,5 +1,6 @@
 package com.example.handicrafts.home;
 
+import android.annotation.SuppressLint;
 import android.app.AlertDialog;
 import android.content.Context;
 import android.content.Intent;
@@ -56,12 +57,12 @@ public class homefragment extends Fragment {
     RecyclerView recyclerView,customer;
     RecyclerView recyclerView2;
     customer_adapter customer_adapter;
-    recycler_adapter adapter2;
+    recycler_adapter adapter2,adapter1;
     //String url=https://handmadehavens.com/review.php
 
 
      ArrayList<home_data> filteredData;
-    ArrayList<home_data> data;
+    ArrayList<home_data> data,data1;
     ArrayList<data> datalist;
     int[] images = {R.drawable.hand1,R.drawable.hand2, R.drawable.hand3,R.drawable.hand2};
      int currentPage = 0;
@@ -133,17 +134,20 @@ public class homefragment extends Fragment {
 
 
         data = new ArrayList<>();
+        data1=new ArrayList<>();
         adapter2=new recycler_adapter(getContext(),data);
+        adapter1=new recycler_adapter(getContext(),data1);
         GridLayoutManager layoutManager = new GridLayoutManager(getContext(), 2);
         recyclerView.setLayoutManager(layoutManager);
         recyclerView.setAdapter(adapter2);
         GridLayoutManager layoutManager2 = new GridLayoutManager(getContext(), 2);
         recyclerView2.setLayoutManager(layoutManager2);
-        recyclerView2.setAdapter(adapter2);
+        recyclerView2.setAdapter(adapter1);
 
 
 
         fetchdata();
+        trending();
 
         filteredData = new ArrayList<>(data);
 
@@ -155,7 +159,7 @@ public class homefragment extends Fragment {
 
             @Override
             public boolean onQueryTextChange(String newText) {
-               // banner.setVisibility(View.INVISIBLE);
+
                 filter(newText);
                 return true;
             }
@@ -168,6 +172,93 @@ public class homefragment extends Fragment {
 
 
     }
+//editing starts here
+    private void trending() {
+        frameLayout.startShimmerAnimation();
+
+
+        RequestQueue requestQueue = Volley.newRequestQueue(getContext());
+        String url = "https://handmadehavens.com/trending.php"; // Replace with your actual PHP API URL
+
+        JsonArrayRequest jsonArrayRequest = new JsonArrayRequest(
+                Request.Method.GET,
+                url,
+                null,
+                new Response.Listener<JSONArray>() {
+                    @Override
+                    public void onResponse(JSONArray response) {
+                        Log.d("YourTag", "Response: " + response.toString());
+                        process(response);
+                    }
+                },
+                new Response.ErrorListener() {
+                    @Override
+                    public void onErrorResponse(VolleyError error) {
+                        Log.e("YourTag", "Error fetching data: " + error.toString());
+                        // Handle errors
+                        Toast.makeText(getContext(), "Error fetching data", Toast.LENGTH_SHORT).show();
+                    }
+                });
+
+        requestQueue.add(jsonArrayRequest);
+
+
+    }
+
+    private void process(JSONArray response) {
+        try {
+            data1.clear();
+
+            for (int i = 0; i < response.length(); i++) {
+                JSONObject product = response.getJSONObject(i);
+
+                home_data home_data = new home_data(
+                        product.getString("product_id"),
+                        product.getString("images"),
+                        product.getString("name"),
+                        product.getString("price"),
+                        product.getString("discount"),
+                        product.getString("description"),
+                        product.getString("content_review"),
+                        product.getString("state"),
+                        product.getString("city"),
+                        R.drawable.favorite2,
+                        R.drawable.discount
+                );
+
+                //  viewData.setDiscount_logo(R.drawable.discount);
+                home_data.setImages(product.getString("images"));
+                home_data.setDiscount(product.getString("discount"));
+                home_data.setName(product.getString("name"));
+                home_data.setPrice(product.getString("price"));
+                home_data.setDescription(product.getString(("description")));
+                home_data.setState(product.getString("state"));
+                home_data.setCity(product.getString("city"));
+                home_data.setContent_review(product.getString("content_review"));
+
+                //viewData.setFav(R.drawable.favourite);
+
+                // viewData.setProduct_id(product.getString("product_id"));
+
+
+                data.add(home_data);
+                data1.add(home_data);
+                frameLayout.postDelayed(() -> {
+                    frameLayout.stopShimmerAnimation();
+                    frameLayout.setVisibility(View.GONE);
+                    recyclerView2.setVisibility(View.VISIBLE);
+                }, 3000);
+            }
+
+            adapter1.notifyDataSetChanged();
+
+        } catch (JSONException e) {
+            e.printStackTrace();
+        }
+
+
+    }
+    //ends here
 
     private void showNoInternetDialog() {
         AlertDialog.Builder builder = new AlertDialog.Builder(getContext());
@@ -283,9 +374,11 @@ public class homefragment extends Fragment {
         requestQueue.add(jsonArrayRequest);
     }
 
+
     private void processJsonResponse(JSONArray response) {
         try {
             data.clear();
+
             for (int i = 0; i < response.length(); i++) {
                 JSONObject product = response.getJSONObject(i);
 
@@ -319,14 +412,16 @@ public class homefragment extends Fragment {
 
 
                 data.add(home_data);
+                data1.add(home_data);
                 frameLayout.postDelayed(() -> {
                     frameLayout.stopShimmerAnimation();
                     frameLayout.setVisibility(View.GONE);
                     recyclerView2.setVisibility(View.VISIBLE);
                 }, 3000);
             }
-            //adapter.notifyDataSetChanged();
+
             adapter2.notifyDataSetChanged();
+
         } catch (JSONException e) {
             e.printStackTrace();
         }

@@ -27,7 +27,7 @@ import com.android.volley.toolbox.JsonObjectRequest;
 import com.android.volley.toolbox.Volley;
 import com.bumptech.glide.Glide;
 import com.example.handicrafts.R;
-import com.example.handicrafts.view.view_data;
+
 //import com.phonepe.intent.sdk.api.B2BPGRequest;
 //import com.phonepe.intent.sdk.api.B2BPGRequestBuilder;
 //import com.phonepe.intent.sdk.api.PhonePe;
@@ -72,6 +72,7 @@ public class detail_view extends AppCompatActivity implements PaymentResultWithD
     String merchantId,merchantTransactionId,saltIndex,apiEndPoint;
     B2BPGRequest b2BPGRequest;
 
+
     float paymentAmount;
 
     @Override
@@ -90,7 +91,7 @@ public class detail_view extends AppCompatActivity implements PaymentResultWithD
         discount = findViewById(R.id.detail_discount);
         animationView = findViewById(R.id.lottie);
 
-        //buyNow = findViewById(R.id.detail_buy_now);
+        buyNow = findViewById(R.id.detail_buy_now);
         animationView.setAnimation(R.raw.lottie4);
         animationView.playAnimation();
 

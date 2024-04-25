@@ -14,6 +14,7 @@
         android:layout_marginStart="8dp"
         android:layout_marginTop="30dp"
         android:layout_alignParentTop="true"
+        android:visibility="gone"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"/>
     <TextView
@@ -82,7 +83,8 @@
         >
         <TextView
             android:layout_width="176dp"
-            android:layout_height="20dp"
+            android:layout_height="30dp"
+            android:textSize="@dimen/_10sdp"
             android:text="@string/doesn_t_have_an_account"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/edt_password"

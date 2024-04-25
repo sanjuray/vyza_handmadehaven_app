@@ -22,7 +22,7 @@ public class detail_activity extends AppCompatActivity {
     MaterialButton maps,save;
     TextInputEditText name,adress_line,state,city,pincode,contact;
 
-    @SuppressLint("MissingInflatedId")
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -121,7 +121,7 @@ public class detail_activity extends AppCompatActivity {
 
     public  void save_shared(String save_name, String save_addess, String save_city, String save_state, String save_pin, String save_contact) {
        // to store loacally the data
-        SharedPreferences preferences=getSharedPreferences("Edit_prefernece", Context.MODE_PRIVATE);
+        SharedPreferences preferences=getSharedPreferences("Edit_preference", Context.MODE_PRIVATE);
         SharedPreferences.Editor editor=preferences.edit();
         editor.putString("detail_name",save_name);
 

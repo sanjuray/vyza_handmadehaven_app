@@ -64,7 +64,8 @@ public class profile_adapter extends BaseAdapter {
         viewHolder.imageViews.setImageResource(currentModel.getClick());
 
 
-        if (i == 1) {
+
+        if (i == 6) {
             convertView.setOnClickListener(new View.OnClickListener() {
                 @Override
             public void onClick(View view) {

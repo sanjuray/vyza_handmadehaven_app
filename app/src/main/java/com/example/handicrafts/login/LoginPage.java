@@ -95,25 +95,27 @@ public class LoginPage extends AppCompatActivity {
         RequestQueue requestQueue = Volley.newRequestQueue(this);
 
 
-            StringRequest request=new StringRequest(Request.Method.POST, url, new Response.Listener<String>() {
+            StringRequest request=new StringRequest(POST, url, new Response.Listener<String>() {
                 @Override
                 public void onResponse(String response) {
                     try {
                         JSONObject jsonResponse = new JSONObject(response);
                         boolean success = jsonResponse.getBoolean("success");
+                        String message=jsonResponse.getString("message");
                         if (success) {
                             int userId = jsonResponse.getInt("user_id");
+                            Toast.makeText(LoginPage.this, message, Toast.LENGTH_SHORT).show();
                             send(userId);
                             Intent intent = new Intent(LoginPage.this, Home.class);
                             startActivity(intent);
                             finish();
                         } else {
-                            if (!success) {
-                                Toast.makeText(LoginPage.this, "User not registered", Toast.LENGTH_SHORT).show();
+
+                                Toast.makeText(LoginPage.this, message, Toast.LENGTH_SHORT).show();
                                 Intent intent = new Intent(LoginPage.this, SignupPage.class);
                                 startActivity(intent);
                                 finish();
-                            }
+
                         }
 
                     } catch (JSONException e) {
@@ -128,9 +130,9 @@ public class LoginPage extends AppCompatActivity {
                     Toast.makeText(LoginPage.this, "Check your network", Toast.LENGTH_SHORT).show();
                 }
             }){
-                @Nullable
+                //@Nullable
                 @Override
-                protected Map<String, String> getParams() throws AuthFailureError {
+                protected Map<String, String> getParams() {
 
                     Map<String,String> data=new HashMap<>();
                     data.put("email",email);
@@ -140,7 +142,7 @@ public class LoginPage extends AppCompatActivity {
             };
 
             requestQueue.add(request);
-    };
+    }
 
 
         public void send(int userid) {

@@ -45,11 +45,11 @@ public class accountFragment extends Fragment {
         addresses=view.findViewById(R.id.address);
         name=view.findViewById(R.id.username);
         shimmerFrameLayout=view.findViewById(R.id.shimmer);
-
+        getall();
         SharedPreferences sharedPreferences= requireContext().getSharedPreferences("share", Context.MODE_PRIVATE);
         String uname=sharedPreferences.getString("name","");
         name.setText(uname);
-        getall();
+       // getall();
 
 
        // shimmerFrameLayout.startShimmerAnimation();
@@ -85,7 +85,11 @@ public class accountFragment extends Fragment {
        listView.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
                                               @Override
                                               public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
-                                                  logout_app();
+
+
+                                                      logout_app();
+
+
                                               }
 
                                               @Override

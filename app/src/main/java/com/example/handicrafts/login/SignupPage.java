@@ -79,21 +79,28 @@ public class SignupPage extends AppCompatActivity {
         genderSpinner();
 
         stateSpinner();
-        preferences=getSharedPreferences("signup",MODE_PRIVATE);
 
-        String image_uri=preferences.getString("image","");
-        if(image_uri!=null){
+
+        //String image_uri=preferences.getString("image","");
+       /* if(image_uri!=null){
             Uri image=Uri.parse(image_uri);
             try {
 
                 InputStream inputStream = getContentResolver().openInputStream(image);
                 Bitmap bitmap = BitmapFactory.decodeStream(inputStream);
                 userImage.setImageBitmap(bitmap);
+                SharedPreferences.Editor editor=preferences.edit();
+                editor.putString("images",image_uri);
             } catch (FileNotFoundException e) {
+                userImage.setImageResource(R.drawable.baseline_person_24);
                 throw new RuntimeException(e);
+
             }
 
-        }
+        }else {
+            userImage.setImageResource(R.drawable.baseline_person_24);
+        }*/
+
         genderDropDown.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
             public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
