@@ -27,4 +27,12 @@
     <string name="api">AIzaSyCX9OMG7iua9i8PCcGB9OlladtWs5heTZY</string>
     <string name="SignUp_add_image">Add Image</string>
 
+    <string name="product_img_desc">Product Image</string>
+    <string name="remove_from_list">remove from list</string>
+
+    <string name="add_to_cart">Add to Cart</string>
+    <string name="delivery_stmt">FREE delivery is available</string>
+
+    <string name="no_ratings">No ratings yet</string>
+
 </resources>

@@ -61,7 +61,7 @@ public class homefragment extends Fragment {
     //String url=https://handmadehavens.com/review.php
 
 
-     ArrayList<home_data> filteredData;
+    ArrayList<home_data> filteredData;
     ArrayList<home_data> data,data1;
     ArrayList<data> datalist;
     int[] images = {R.drawable.hand1,R.drawable.hand2, R.drawable.hand3,R.drawable.hand2};
@@ -117,10 +117,6 @@ public class homefragment extends Fragment {
 
 
         timer.schedule(timerTask, 1000, 3000);
-
-
-
-
 
         recyclerView2=view.findViewById(R.id.grid2);
         recyclerView=view.findViewById(R.id.grid_love);
@@ -208,10 +204,8 @@ public class homefragment extends Fragment {
     private void process(JSONArray response) {
         try {
             data1.clear();
-
             for (int i = 0; i < response.length(); i++) {
                 JSONObject product = response.getJSONObject(i);
-
                 home_data home_data = new home_data(
                         product.getString("product_id"),
                         product.getString("images"),

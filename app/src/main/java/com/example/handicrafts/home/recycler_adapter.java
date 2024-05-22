@@ -107,7 +107,6 @@ public class recycler_adapter extends RecyclerView.Adapter<recycler_adapter.view
             price=itemView.findViewById(R.id.price);
             discount=itemView.findViewById(R.id.discount);
             view=itemView.findViewById(R.id.faviconImageView);
-
         }
     }
 

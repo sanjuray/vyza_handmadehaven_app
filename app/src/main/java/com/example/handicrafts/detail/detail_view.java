@@ -117,6 +117,7 @@ public class detail_view extends AppCompatActivity implements PaymentResultWithD
             @Override
             public void onClick(View v) {
                 try {
+                    merchantTransactionId = "T_HMH"+String.valueOf(System.currentTimeMillis());
                     initPhonePe();
                 } catch (PhonePeInitException e) {
                     throw new RuntimeException(e);
@@ -130,24 +131,24 @@ public class detail_view extends AppCompatActivity implements PaymentResultWithD
     private void initRazorPay(){
         Checkout.preload(getApplicationContext());
         checkout =new Checkout();
-        checkout.setKeyID("rzp_test_Nqy8gmPWtyPySL");
+        checkout.setKeyID("rzp_live_5BrSGldav87Fs");
         checkout.setImage(R.drawable.logo);
         paymentAmount = Float.parseFloat(price.getText().toString());
         final Activity activity = this;
         // Initialize client
-//        RazorpayClient instance = new RazorpayClient("key_id", "key_secret");
+//        RazorpayClient
 
         JSONObject orderRequest = new JSONObject();
         try {
             orderRequest.put("name","Vyza Solutions");
-            orderRequest.put("description","Reference no. 007");
+            orderRequest.put("notes","Reference no. 007");
 //            orderRequest.put("theme.color","#35EDF9");
             orderRequest.put("currency","INR");
             orderRequest.put("amount",paymentAmount*100.00);
             orderRequest.put("contact","6874518955");
             orderRequest.put("email","customer@gmail.com");
 
-//            orderRequest.put("order_id","order_id");
+            orderRequest.put("order_id",merchantTransactionId);
 
             JSONObject retryObj = new JSONObject();
             retryObj.put("enabled", true);
@@ -205,7 +206,7 @@ public class detail_view extends AppCompatActivity implements PaymentResultWithD
     private void initPhonePe() throws PhonePeInitException {
 
         merchantId = "PGTESTPAYUAT";
-        merchantTransactionId = "T"+String.valueOf(System.currentTimeMillis());
+//        merchantTransactionId = "T"+String.valueOf(System.currentTimeMillis());a
         saltIndex = "099eb0cd-02cf-4e2a-8aca-3e6c6aff0399";
         apiEndPoint = "/pg/v1/pay";
 
@@ -221,7 +222,7 @@ public class detail_view extends AppCompatActivity implements PaymentResultWithD
 //            data.put("merchantUserId", "9876543"); --> optional for testing used for getting card details and etc
             data.put("amount", paymentAmount*100);
             data.put("mobileNumber", "9876543210");
-            data.put("callbackUrl", "https://webhook.site/bf0f91b3-280b-4e90-a56f-a2dd81f7e8ee");
+            data.put("callbackUrl", "https://handmadehavens.com/webhook/callback.php");
 
             JSONObject paymentInstrument = new JSONObject();
             paymentInstrument.put("type", "PAY_PAGE");
