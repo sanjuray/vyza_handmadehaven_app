@@ -48,10 +48,11 @@ public class Order_fragment extends Fragment {
         }else{
             items = new ArrayList<>();
             wishlistAdapter = new Wishlist_Adapter(getContext(),items);
+            wishlist_items_view = view.findViewById(R.id.wishlist_items_view);
             wishlist_items_view.setLayoutManager(new LinearLayoutManager(getContext()));
             wishlist_items_view.setAdapter(wishlistAdapter);
             getFavoriteItems();
-
+//            Toast.makeText(getContext(),"Entr the create!", Toast.LENGTH_SHORT).show();
         }
 
         return view;
@@ -72,8 +73,8 @@ public class Order_fragment extends Fragment {
 
     private void getFavoriteItems() {
         RequestQueue requestQueue = Volley.newRequestQueue(getContext());
-        String url = "https://handmadehavens.com/get_favourites.php"; // Replace with your actual PHP API URL
-
+//        String url = "https://handmadehavens.com/get_favourites.php"; // Replace with your actual PHP API URL
+        String url = "https://handmadehavens.com/trending.php";
         JsonArrayRequest jsonArrayRequest = new JsonArrayRequest(
                 Request.Method.GET,
                 url,
