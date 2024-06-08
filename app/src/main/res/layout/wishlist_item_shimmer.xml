@@ -1,0 +1,147 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:background="@color/white"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:padding="5dp">
+
+    <androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:tools="http://schemas.android.com/tools"
+        android:layout_width="match_parent"
+        android:layout_height="280dp"
+        xmlns:app="http://schemas.android.com/apk/res-auto"
+        app:cardElevation="20dp"
+        app:cardCornerRadius="20dp"
+        android:layout_margin="5dp"
+        android:padding="5dp">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="horizontal"
+            android:padding="10dp">
+
+            <View
+                android:layout_width="140dp"
+                android:layout_height="match_parent"
+                android:background="@color/grey"
+                android:contentDescription="@string/product_img_desc"/>
+
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:padding="10dp">
+
+                <ImageButton
+                    android:id="@+id/close_cancel_shimmer"
+                    android:layout_width="34dp"
+                    android:layout_height="20dp"
+                    android:backgroundTint="@color/white"
+                    android:src="@drawable/close_cancel"
+                    android:contentDescription="@string/remove_from_list"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintTop_toTopOf="parent" />
+
+                <TextView
+                    android:id="@+id/product_name_shimmer"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:background="@color/grey"
+                    android:textSize="18sp"
+                    android:textStyle="bold|normal"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/close_cancel_shimmer" />
+
+                <TextView
+                    android:id="@+id/seller_shimmer"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:background="@color/grey"
+                    android:layout_marginTop="5dp"
+                    app:layout_constraintStart_toStartOf="@+id/product_name_shimmer"
+                    app:layout_constraintTop_toBottomOf="@+id/product_name_shimmer" />
+
+                <ImageView
+                    android:id="@+id/rating_stars_shimmer"
+                    android:layout_width="113dp"
+                    android:layout_height="26dp"
+                    android:layout_marginTop="5dp"
+                    android:background="@color/grey"
+                    app:layout_constraintStart_toStartOf="@+id/seller_shimmer"
+                    app:layout_constraintTop_toBottomOf="@+id/seller_shimmer" />
+
+                <TextView
+                    android:id="@+id/ratings_count_shimmer"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:paddingStart="5dp"
+                    android:layout_marginStart="5dp"
+                    android:text="No Ratings Yet"
+                    android:background="@color/grey"
+                    android:textSize="11sp"
+                    app:layout_constraintBottom_toBottomOf="@+id/rating_stars_shimmer"
+                    app:layout_constraintStart_toEndOf="@+id/rating_stars_shimmer" />
+
+                <TextView
+                    android:id="@+id/pricing_shimmer"
+                    android:layout_width="100dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="5dp"
+                    android:background="@color/grey"
+                    android:textSize="20sp"
+                    android:textStyle="bold"
+                    app:layout_constraintStart_toStartOf="@+id/rating_stars_shimmer"
+                    app:layout_constraintTop_toBottomOf="@+id/rating_stars_shimmer" />
+
+                <TextView
+                    android:id="@+id/marked_price_shimmer"
+                    android:layout_width="80dp"
+                    android:layout_height="wrap_content"
+                    android:paddingStart="5dp"
+                    android:textSize="11sp"
+                    android:layout_marginStart="5dp"
+                    android:background="@color/grey"
+                    app:layout_constraintBottom_toBottomOf="@+id/pricing_shimmer"
+                    app:layout_constraintStart_toEndOf="@+id/pricing_shimmer" />
+
+                <TextView
+                    android:id="@+id/deal_percent_shimmer"
+                    android:layout_width="60dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="5dp"
+                    android:background="#c30101"
+                    android:padding="5dp"
+                    android:textColor="@color/white"
+                    app:layout_constraintStart_toStartOf="@+id/pricing_shimmer"
+                    app:layout_constraintTop_toBottomOf="@+id/pricing_shimmer" />
+
+                <TextView
+                    android:id="@+id/delivery_info_shimmer"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="5dp"
+                    android:text="@string/delivery_stmt"
+                    android:textStyle="italic"
+                    app:layout_constraintStart_toStartOf="@+id/deal_percent_shimmer"
+                    app:layout_constraintTop_toBottomOf="@+id/deal_percent_shimmer" />
+
+                <Button
+                    android:id="@+id/add_to_cart_shimmer"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:backgroundTint="@color/white"
+                    android:text="@string/add_to_cart"
+                    android:textColor="@color/color_green_ic_radio_button_checked"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent" />
+
+            </androidx.constraintlayout.widget.ConstraintLayout>
+
+        </LinearLayout>
+
+    </androidx.cardview.widget.CardView>
+
+
+</LinearLayout>
